@@ -7,23 +7,30 @@ import uuid
 #==========================================================
 '''
 TABLE CREATION
-Database usersandstories.db
-Tables: users, stories, updates
+Database
 '''
 
 def tableCreation():
-    f="data/usersandstories.db"
+    f="data/restaurant_reservations.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()         #facilitates db ops
+
     #Create the users table
-    user_table = 'CREATE TABLE users (username TEXT, password BLOB, userID INTEGER);'
+    user_table = 'CREATE TABLE users (username TEXT, password BLOB, userID INTEGER PRIMARY KEY, userType INTEGER);'
     c.execute(user_table)
-    #Create the stories table
-    stories_table = 'CREATE TABLE stories (storyID INTEGER, title TEXT, author INTEGER, content TEXT);'
-    c.execute(stories_table)
-    #Create the updates table
-    update_table = 'CREATE TABLE updates (storyID INTEGER, contribution TEXT, contributor INTEGER);'
-    c.execute(update_table)
+
+    #Create the restaurants table
+    restaurants_table = 'CREATE TABLE restaurants (restID INTEGER PRIMARY KEY, restname TEXT, userID INTEGER, res_slot INTEGER, res_length INTERGER, grid_x INTERGER, grid_y INTERGER);'
+    c.execute(restaurants_table)
+
+    #Create the reservations table
+    reservations_table = 'CREATE TABLE reservations (restID INTEGER, userID INTEGER, tableID INTEGER, month INTEGER, day INTEGER, time TEXT);'
+    c.execute(reservations_table)
+
+    #Create the restaurant layout table
+    rest_layout_table = 'CREATE TABLE rest_layout (restID INTEGER, tableID INTEGER, seats INTEGER, day INTEGER, squares BLOB);'
+    c.execute(rest_layout_table)
+
     db.commit()
     db.close()
 
@@ -40,7 +47,7 @@ def check_password(hashed_password, user_password):
 
 #add a user
 def addUser(new_username, new_password):
-    f="data/usersandstories.db"
+    f="data/restaurant_reservations.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()         #facilitates db ops
     #global userID_counter
@@ -61,7 +68,7 @@ def addUser(new_username, new_password):
 #==========================================================
 #ACCESSORS
 def getPass(username):
-    f="data/usersandstories.db"
+    f="data/restaurant_reservations.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()         #facilitates db ops
     command = "SELECT username, password FROM users"
