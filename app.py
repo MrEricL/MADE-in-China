@@ -19,6 +19,14 @@ def root():
         return redirect("home")
     else:
         return render_template("login.html")
+
+
+@app.route('/registration')
+def registration():
+    if session.has_key('user'):
+        return redirect("home")
+    else:
+        return render_template("register.html")
  
 #authenticate user credentials
 @app.route('/login', methods = ['POST','GET'])
