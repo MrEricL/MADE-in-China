@@ -11,6 +11,6 @@ def authenticate(user, passw):
      else:
           return -2
 
-def register(user, passw):
-     addUser(user,passw)
+def register(user, passw, usertypeInt):
+     addUser(user,passw,usertypeInt)
 

@@ -49,15 +49,23 @@ def login():
 @app.route('/register', methods = ['POST', 'GET'])
 def register():
     user = request.form['user']
-    print user
+    #print user
     password = request.form['pass']
-    print password
+    #print password
+    usertype = request.form['usertype']
+
+
+    if usertype == "Owner":
+        usertypeInt = 0
+    else:
+        usertypeInt = 1
+
 
     if checkUsername(user):
         flash('Username unavailable. Please try another username.')
         return redirect(url_for('root'))
     else:
-        addUser(user,password)
+        addUser(user,password,usertypeInt)
         session['user'] = user
         return redirect( url_for('home'))
     
