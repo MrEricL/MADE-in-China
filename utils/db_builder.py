@@ -91,9 +91,22 @@ def getPass(username):
             retVal = str(entry[1])
     db.close()
     return retVal
+'''
+def userType(username):
+    f="data/restaurant_reservations.db"
+    db = sqlite3.connect(f) #open if f exists, otherwise create
+    c = db.cursor()         #facilitates db ops
+    command = "SELECT username, password FROM users"
+    info = c.execute(command)
 
+    retVal = None
+    for entry in info:
+        if str(entry[0]) == username:
+            retVal = str(entry[1])
+    db.close()
+    return retVal
 
-
+'''
 if __name__ == '__main__':     
     #TESTING
     tableCreation()

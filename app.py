@@ -12,6 +12,12 @@ GOOD = 1
 
 user = ""
 
+#User Type
+# owner = 0
+# user = 1
+user_type = 0
+
+
 @app.route('/')
 def root():
     #redirect to home if there is a session
