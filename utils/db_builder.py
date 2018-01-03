@@ -91,12 +91,12 @@ def getPass(username):
             retVal = str(entry[1])
     db.close()
     return retVal
-'''
-def userType(username):
+
+def getUserType(username):
     f="data/restaurant_reservations.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()         #facilitates db ops
-    command = "SELECT username, password FROM users"
+    command = "SELECT username, userType FROM users"
     info = c.execute(command)
 
     retVal = None
@@ -104,10 +104,12 @@ def userType(username):
         if str(entry[0]) == username:
             retVal = str(entry[1])
     db.close()
+    print str(retVal) + "\n\n\n"
     return retVal
 
-'''
 if __name__ == '__main__':     
     #TESTING
-    tableCreation()
+    #tableCreation()
+    getUserType("a") #0
+    getUserType("cust") #1
 

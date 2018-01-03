@@ -1,10 +1,11 @@
 from flask import Flask, render_template, request, session, url_for, flash, redirect
 from utils.accounts import authenticate
-from utils.db_builder import checkUsername, addUser
+from utils.db_builder import checkUsername, addUser, getUserType
 import os
 
 app = Flask(__name__)
-app.secret_key = os.urandom(32)  #for the cookies
+#Cookie/Login Stuff
+app.secret_key = os.urandom(32) 
 
 BAD_USER = -1
 BAD_PASS = -2
@@ -50,6 +51,8 @@ def login():
     #otherwise redirect back to root with flashed message 
     if result == GOOD:
         session['user'] = user
+        user_type = getUserType (user)
+        print user_type #DELETE13        
         #for x in session:
             #print session[x]
         return redirect( url_for('home') )
@@ -81,6 +84,8 @@ def register():
         return redirect(url_for('registration'))
     else:
         addUser(user,password,usertypeInt)
+        user_type = usertypeInt
+        print user_type #DELETE13
         session['user'] = user
         return redirect( url_for('home'))
     
@@ -88,8 +93,9 @@ def register():
 #user dashboard 
 @app.route('/home', methods = ['POST','GET'])
 def home():
+    user_type = getUserType (user)
     if 'user' in session:
-        return render_template("home.html")
+        return render_template("home.html",userstatus=user_type)
         
     else:    
         return redirect(url_for("root"))
