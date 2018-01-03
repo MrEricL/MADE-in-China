@@ -46,7 +46,7 @@ def check_password(hashed_password, user_password):
     return password == hashlib.sha256(key.encode()+user_password.encode()).hexdigest()
 
 #add a user
-def addUser(new_username, new_password):
+def addUser(new_username, new_password, new_type):
     f="data/restaurant_reservations.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()         #facilitates db ops
@@ -60,10 +60,21 @@ def addUser(new_username, new_password):
     #new_userID += 1
     hash_pass = hash_password(new_password)
     print ('The string to store in the db is: ' + hash_pass)
-    c.execute('INSERT INTO users VALUES (?,?,?)',[new_username, hash_pass, new_userID])
+    c.execute('INSERT INTO users VALUES (?,?,?,?)',[new_username, hash_pass, new_userID, new_type])
     db.commit()
     db.close()
 
+def checkUsername(userN):
+    f="data/restaurant_reservations.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+    users = c.execute('SELECT username FROM users;')
+    result = False
+    for x in users:
+        if (x[0] == userN):
+            result = True
+    db.close()
+    return result
 
 #==========================================================
 #ACCESSORS
