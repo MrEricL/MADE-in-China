@@ -37,6 +37,8 @@ def tableCreation():
 
 #ADD VALUES TO TABLES
 
+#user table stuff
+
 def hash_password(password):
     key = uuid.uuid4().hex
     return hashlib.sha256(key.encode() + password.encode()).hexdigest()+':' + key
@@ -45,7 +47,7 @@ def check_password(hashed_password, user_password):
     password, key = hashed_password.split(':')
     return password == hashlib.sha256(key.encode()+user_password.encode()).hexdigest()
 
-#add a user
+#add a user to user table
 def addUser(new_username, new_password, new_type):
     f="data/restaurant_reservations.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
@@ -64,6 +66,7 @@ def addUser(new_username, new_password, new_type):
     db.commit()
     db.close()
 
+#if username exist, return true
 def checkUsername(userN):
     f="data/restaurant_reservations.db"
     db = sqlite3.connect(f)
@@ -76,8 +79,62 @@ def checkUsername(userN):
     db.close()
     return result
 
+#restaurant info stuff
+
+#add a restaurant
+def add_rest(rest_name, owner_id, res_slot, res_length, grid_x, grid_y):
+    f="data/restaurant_reservations.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+    
+    def get_next_id():
+        #ahhhh
+
+    rest_id = get_next_id()
+    c.execute('INSERT INTO restaurants VALUES (?,?,?,?,?,?,?)',[rest_id, rest_name, owner_id, res_slot, res_length, grid_x, grid_y])
+        
+    db.commit()
+    db.close()
+
+
+#layout stuff
+
+#add table
+def add_table(rest_id, position_list):
+    f="data/restaurant_reservations.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+
+    def get_next_id():
+        #ahhhh
+
+    table_id = get_next_id()
+    c.execute('INSERT INTO rest_layout VALUES (?,?,?)', [rest_id, table_id, position_list])
+
+    db.commit()
+    db.close()
+
+#clear all tables for a restaurant
+def clear_tables(rest_id):
+    f="data/restaurant_reservations.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+
+    c.execute('DELETE FROM rest_layout WHERE rest_id=?',[rest_id])
+
+    db.commit()
+    db.close()
+
+    
+#reservation stuff
+    
+
 #==========================================================
 #ACCESSORS
+
+#for user table
+
+#gets password for a user
 def getPass(username):
     f="data/restaurant_reservations.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
@@ -92,6 +149,7 @@ def getPass(username):
     db.close()
     return retVal
 
+#get the type of user (0 is owner, 1 is customer)
 def getUserType(username):
     f="data/restaurant_reservations.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
@@ -106,6 +164,50 @@ def getUserType(username):
     db.close()
     print str(retVal) + "\n\n\n"
     return retVal
+
+
+#for restaurant table
+
+#gets a list of restaurants owned by the user
+def get_restaurants(owner_id):
+    f="data/restaurant_reservations.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+
+    command = 'SELECT rest_name FROM restaurants WHERE user_id=' + owner_id
+    info = c.execute(command)
+
+    rests = []
+    for entry in info:
+        rests.append(entry)
+
+    db.close()
+    return rests
+
+#gets size of layout grid
+def get_grid_size(rest_id):
+    f="data/restaurant_reservations.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+
+    command = "SELECT grid_x, grid_y FROM restaurant_layout WHERE rest_id=" + rest_id
+    info = c.execute(command)
+
+    grid_size = (None, None)
+    for entry in info:
+        grid_size[0] = entry[0]
+        grid_size[1] = entry[1]
+
+    db.close()
+    return grid_size
+
+#for layout table
+
+#get layout
+def get_layout(rest_id):
+    f="data/restaurant_reservations.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
 
 if __name__ == '__main__':     
     #TESTING
