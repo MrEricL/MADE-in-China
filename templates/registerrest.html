@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Register a Rest </title>
+</head>
+<body>
+	<form>
+		Name: <input type="text" name="restname"> <br><br>
+		Zip Code: <input type="text" onkeypress="return event.charCode>= 48 && event.charCode <= 57" name="zipcode" maxlength="5"> <br><br>
+		Opening Hours:<br>
+		Sunday
+		<br>
+		<select name="sunstatus">
+			<option value="open"> Opened </option>
+			<option value="close"> Closed </option>
+		</select>
+		<br>
+		Opening
+		<select name="sun_opening_hours">
+			<option value="0"> 00 </option>
+			<option value="1"> 01 </option>
+			<option value="2"> 02 </option>
+			<option value="3"> 03 </option>
+			<option value="4"> 04 </option>
+			<option value="5"> 05 </option>
+			<option value="6"> 06 </option>
+			<option value="7"> 07 </option>
+			<option value="8"> 08 </option>
+			<option value="9"> 09 </option>
+			<option value="10"> 10 </option>
+			<option value="11"> 11 </option>
+			<option value="12"> 12 </option>
+			<option value="13"> 13 </option>
+			<option value="14"> 14 </option>
+			<option value="15"> 15 </option>
+			<option value="16"> 16 </option>
+			<option value="17"> 17 </option>
+			<option value="18"> 18 </option>
+			<option value="19"> 19 </option>
+			<option value="20"> 20 </option>
+			<option value="21"> 21 </option>
+			<option value="22"> 22 </option>
+			<option value="23"> 23 </option>
+		</select>
+		:
+		<select name="sun_opening_mins">
+			<option value="1"> 00 </option>
+			<option value="2"> 05 </option>
+			<option value="3"> 10 </option>
+			<option value="4"> 15 </option>
+			<option value="5"> 20 </option>
+			<option value="6"> 30 </option>
+			<option value="7"> 35 </option>
+			<option value="8"> 40 </option>
+			<option value="9"> 45 </option>
+			<option value="10"> 50 </option>
+			<option value="11"> 55 </option>
+		</select>
+		<br>
+		Closing
+		<select name="sun_closing_hours">
+			<option value="0"> 00 </option>
+			<option value="1"> 01 </option>
+			<option value="2"> 02 </option>
+			<option value="3"> 03 </option>
+			<option value="4"> 04 </option>
+			<option value="5"> 05 </option>
+			<option value="6"> 06 </option>
+			<option value="7"> 07 </option>
+			<option value="8"> 08 </option>
+			<option value="9"> 09 </option>
+			<option value="10"> 10 </option>
+			<option value="11"> 11 </option>
+			<option value="12"> 12 </option>
+			<option value="13"> 13 </option>
+			<option value="14"> 14 </option>
+			<option value="15"> 15 </option>
+			<option value="16"> 16 </option>
+			<option value="17"> 17 </option>
+			<option value="18"> 18 </option>
+			<option value="19"> 19 </option>
+			<option value="20"> 20 </option>
+			<option value="21"> 21 </option>
+			<option value="22"> 22 </option>
+			<option value="23"> 23 </option>
+		</select>
+		:
+		<select name="sun_closing_mins">
+			<option value="1"> 00 </option>
+			<option value="2"> 05 </option>
+			<option value="3"> 10 </option>
+			<option value="4"> 15 </option>
+			<option value="5"> 20 </option>
+			<option value="6"> 30 </option>
+			<option value="7"> 35 </option>
+			<option value="8"> 40 </option>
+			<option value="9"> 45 </option>
+			<option value="10"> 50 </option>
+			<option value="11"> 55 </option>
+		</select>		
+		<br><br><br>
+		Monday
+				<br>
+		<select name="monstatus">
+			<option value="open"> Opened </option>
+			<option value="close"> Closed </option>
+		</select>
+		<br>
+		Opening
+		<select name="mon_opening_hours">
+			<option value="0"> 00 </option>
+			<option value="1"> 01 </option>
+			<option value="2"> 02 </option>
+			<option value="3"> 03 </option>
+			<option value="4"> 04 </option>
+			<option value="5"> 05 </option>
+			<option value="6"> 06 </option>
+			<option value="7"> 07 </option>
+			<option value="8"> 08 </option>
+			<option value="9"> 09 </option>
+			<option value="10"> 10 </option>
+			<option value="11"> 11 </option>
+			<option value="12"> 12 </option>
+			<option value="13"> 13 </option>
+			<option value="14"> 14 </option>
+			<option value="15"> 15 </option>
+			<option value="16"> 16 </option>
+			<option value="17"> 17 </option>
+			<option value="18"> 18 </option>
+			<option value="19"> 19 </option>
+			<option value="20"> 20 </option>
+			<option value="21"> 21 </option>
+			<option value="22"> 22 </option>
+			<option value="23"> 23 </option>
+		</select>
+		:
+		<select name="mon_opening_mins">
+			<option value="1"> 00 </option>
+			<option value="2"> 05 </option>
+			<option value="3"> 10 </option>
+			<option value="4"> 15 </option>
+			<option value="5"> 20 </option>
+			<option value="6"> 30 </option>
+			<option value="7"> 35 </option>
+			<option value="8"> 40 </option>
+			<option value="9"> 45 </option>
+			<option value="10"> 50 </option>
+			<option value="11"> 55 </option>
+		</select>
+		<br>
+		Closing
+		<select name="mon_closing_hours">
+			<option value="0"> 00 </option>
+			<option value="1"> 01 </option>
+			<option value="2"> 02 </option>
+			<option value="3"> 03 </option>
+			<option value="4"> 04 </option>
+			<option value="5"> 05 </option>
+			<option value="6"> 06 </option>
+			<option value="7"> 07 </option>
+			<option value="8"> 08 </option>
+			<option value="9"> 09 </option>
+			<option value="10"> 10 </option>
+			<option value="11"> 11 </option>
+			<option value="12"> 12 </option>
+			<option value="13"> 13 </option>
+			<option value="14"> 14 </option>
+			<option value="15"> 15 </option>
+			<option value="16"> 16 </option>
+			<option value="17"> 17 </option>
+			<option value="18"> 18 </option>
+			<option value="19"> 19 </option>
+			<option value="20"> 20 </option>
+			<option value="21"> 21 </option>
+			<option value="22"> 22 </option>
+			<option value="23"> 23 </option>
+		</select>
+		:
+		<select name="mon_closing_mins">
+			<option value="1"> 00 </option>
+			<option value="2"> 05 </option>
+			<option value="3"> 10 </option>
+			<option value="4"> 15 </option>
+			<option value="5"> 20 </option>
+			<option value="6"> 30 </option>
+			<option value="7"> 35 </option>
+			<option value="8"> 40 </option>
+			<option value="9"> 45 </option>
+			<option value="10"> 50 </option>
+			<option value="11"> 55 </option>
+		</select>		
+		<br><br><br>
+
+		Tuesday
+			<br>
+		<select name="tuesstatus">
+			<option value="open"> Opened </option>
+			<option value="close"> Closed </option>
+		</select>
+		<br>
+		Opening
+		<select name="tues_opening_hours">
+			<option value="0"> 00 </option>
+			<option value="1"> 01 </option>
+			<option value="2"> 02 </option>
+			<option value="3"> 03 </option>
+			<option value="4"> 04 </option>
+			<option value="5"> 05 </option>
+			<option value="6"> 06 </option>
+			<option value="7"> 07 </option>
+			<option value="8"> 08 </option>
+			<option value="9"> 09 </option>
+			<option value="10"> 10 </option>
+			<option value="11"> 11 </option>
+			<option value="12"> 12 </option>
+			<option value="13"> 13 </option>
+			<option value="14"> 14 </option>
+			<option value="15"> 15 </option>
+			<option value="16"> 16 </option>
+			<option value="17"> 17 </option>
+			<option value="18"> 18 </option>
+			<option value="19"> 19 </option>
+			<option value="20"> 20 </option>
+			<option value="21"> 21 </option>
+			<option value="22"> 22 </option>
+			<option value="23"> 23 </option>
+		</select>
+		:
+		<select name="tues_opening_mins">
+			<option value="1"> 00 </option>
+			<option value="2"> 05 </option>
+			<option value="3"> 10 </option>
+			<option value="4"> 15 </option>
+			<option value="5"> 20 </option>
+			<option value="6"> 30 </option>
+			<option value="7"> 35 </option>
+			<option value="8"> 40 </option>
+			<option value="9"> 45 </option>
+			<option value="10"> 50 </option>
+			<option value="11"> 55 </option>
+		</select>
+		<br>
+		Closing
+		<select name="tues_closing_hours">
+			<option value="0"> 00 </option>
+			<option value="1"> 01 </option>
+			<option value="2"> 02 </option>
+			<option value="3"> 03 </option>
+			<option value="4"> 04 </option>
+			<option value="5"> 05 </option>
+			<option value="6"> 06 </option>
+			<option value="7"> 07 </option>
+			<option value="8"> 08 </option>
+			<option value="9"> 09 </option>
+			<option value="10"> 10 </option>
+			<option value="11"> 11 </option>
+			<option value="12"> 12 </option>
+			<option value="13"> 13 </option>
+			<option value="14"> 14 </option>
+			<option value="15"> 15 </option>
+			<option value="16"> 16 </option>
+			<option value="17"> 17 </option>
+			<option value="18"> 18 </option>
+			<option value="19"> 19 </option>
+			<option value="20"> 20 </option>
+			<option value="21"> 21 </option>
+			<option value="22"> 22 </option>
+			<option value="23"> 23 </option>
+		</select>
+		:
+		<select name="tues_closing_mins">
+			<option value="1"> 00 </option>
+			<option value="2"> 05 </option>
+			<option value="3"> 10 </option>
+			<option value="4"> 15 </option>
+			<option value="5"> 20 </option>
+			<option value="6"> 30 </option>
+			<option value="7"> 35 </option>
+			<option value="8"> 40 </option>
+			<option value="9"> 45 </option>
+			<option value="10"> 50 </option>
+			<option value="11"> 55 </option>
+		</select>		
+		<br><br><br>
+
+		Wendesday
+				<br>
+		<select name="wedstatus">
+			<option value="open"> Opened </option>
+			<option value="close"> Closed </option>
+		</select>
+		<br>
+		Opening
+		<select name="wed_opening_hours">
+			<option value="0"> 00 </option>
+			<option value="1"> 01 </option>
+			<option value="2"> 02 </option>
+			<option value="3"> 03 </option>
+			<option value="4"> 04 </option>
+			<option value="5"> 05 </option>
+			<option value="6"> 06 </option>
+			<option value="7"> 07 </option>
+			<option value="8"> 08 </option>
+			<option value="9"> 09 </option>
+			<option value="10"> 10 </option>
+			<option value="11"> 11 </option>
+			<option value="12"> 12 </option>
+			<option value="13"> 13 </option>
+			<option value="14"> 14 </option>
+			<option value="15"> 15 </option>
+			<option value="16"> 16 </option>
+			<option value="17"> 17 </option>
+			<option value="18"> 18 </option>
+			<option value="19"> 19 </option>
+			<option value="20"> 20 </option>
+			<option value="21"> 21 </option>
+			<option value="22"> 22 </option>
+			<option value="23"> 23 </option>
+		</select>
+		:
+		<select name="wed_opening_mins">
+			<option value="1"> 00 </option>
+			<option value="2"> 05 </option>
+			<option value="3"> 10 </option>
+			<option value="4"> 15 </option>
+			<option value="5"> 20 </option>
+			<option value="6"> 30 </option>
+			<option value="7"> 35 </option>
+			<option value="8"> 40 </option>
+			<option value="9"> 45 </option>
+			<option value="10"> 50 </option>
+			<option value="11"> 55 </option>
+		</select>
+		<br>
+		Closing
+		<select name="wed_closing_hours">
+			<option value="0"> 00 </option>
+			<option value="1"> 01 </option>
+			<option value="2"> 02 </option>
+			<option value="3"> 03 </option>
+			<option value="4"> 04 </option>
+			<option value="5"> 05 </option>
+			<option value="6"> 06 </option>
+			<option value="7"> 07 </option>
+			<option value="8"> 08 </option>
+			<option value="9"> 09 </option>
+			<option value="10"> 10 </option>
+			<option value="11"> 11 </option>
+			<option value="12"> 12 </option>
+			<option value="13"> 13 </option>
+			<option value="14"> 14 </option>
+			<option value="15"> 15 </option>
+			<option value="16"> 16 </option>
+			<option value="17"> 17 </option>
+			<option value="18"> 18 </option>
+			<option value="19"> 19 </option>
+			<option value="20"> 20 </option>
+			<option value="21"> 21 </option>
+			<option value="22"> 22 </option>
+			<option value="23"> 23 </option>
+		</select>
+		:
+		<select name="wed_opening_mins">
+			<option value="1"> 00 </option>
+			<option value="2"> 05 </option>
+			<option value="3"> 10 </option>
+			<option value="4"> 15 </option>
+			<option value="5"> 20 </option>
+			<option value="6"> 30 </option>
+			<option value="7"> 35 </option>
+			<option value="8"> 40 </option>
+			<option value="9"> 45 </option>
+			<option value="10"> 50 </option>
+			<option value="11"> 55 </option>
+		</select>		
+		<br><br><br>
+		<br>
+		Thursday
+				<br>
+		<select name="thurstatus">
+			<option value="open"> Opened </option>
+			<option value="close"> Closed </option>
+		</select>
+		<br>
+		Opening
+		<select name="thur_opening_hours">
+			<option value="0"> 00 </option>
+			<option value="1"> 01 </option>
+			<option value="2"> 02 </option>
+			<option value="3"> 03 </option>
+			<option value="4"> 04 </option>
+			<option value="5"> 05 </option>
+			<option value="6"> 06 </option>
+			<option value="7"> 07 </option>
+			<option value="8"> 08 </option>
+			<option value="9"> 09 </option>
+			<option value="10"> 10 </option>
+			<option value="11"> 11 </option>
+			<option value="12"> 12 </option>
+			<option value="13"> 13 </option>
+			<option value="14"> 14 </option>
+			<option value="15"> 15 </option>
+			<option value="16"> 16 </option>
+			<option value="17"> 17 </option>
+			<option value="18"> 18 </option>
+			<option value="19"> 19 </option>
+			<option value="20"> 20 </option>
+			<option value="21"> 21 </option>
+			<option value="22"> 22 </option>
+			<option value="23"> 23 </option>
+		</select>
+		:
+		<select name="thur_opening_mins">
+			<option value="1"> 00 </option>
+			<option value="2"> 05 </option>
+			<option value="3"> 10 </option>
+			<option value="4"> 15 </option>
+			<option value="5"> 20 </option>
+			<option value="6"> 30 </option>
+			<option value="7"> 35 </option>
+			<option value="8"> 40 </option>
+			<option value="9"> 45 </option>
+			<option value="10"> 50 </option>
+			<option value="11"> 55 </option>
+		</select>
+		<br>
+		Closing
+		<select name="thur_closing_hours">
+			<option value="0"> 00 </option>
+			<option value="1"> 01 </option>
+			<option value="2"> 02 </option>
+			<option value="3"> 03 </option>
+			<option value="4"> 04 </option>
+			<option value="5"> 05 </option>
+			<option value="6"> 06 </option>
+			<option value="7"> 07 </option>
+			<option value="8"> 08 </option>
+			<option value="9"> 09 </option>
+			<option value="10"> 10 </option>
+			<option value="11"> 11 </option>
+			<option value="12"> 12 </option>
+			<option value="13"> 13 </option>
+			<option value="14"> 14 </option>
+			<option value="15"> 15 </option>
+			<option value="16"> 16 </option>
+			<option value="17"> 17 </option>
+			<option value="18"> 18 </option>
+			<option value="19"> 19 </option>
+			<option value="20"> 20 </option>
+			<option value="21"> 21 </option>
+			<option value="22"> 22 </option>
+			<option value="23"> 23 </option>
+		</select>
+		:
+		<select name="thur_closing_mins">
+			<option value="1"> 00 </option>
+			<option value="2"> 05 </option>
+			<option value="3"> 10 </option>
+			<option value="4"> 15 </option>
+			<option value="5"> 20 </option>
+			<option value="6"> 30 </option>
+			<option value="7"> 35 </option>
+			<option value="8"> 40 </option>
+			<option value="9"> 45 </option>
+			<option value="10"> 50 </option>
+			<option value="11"> 55 </option>
+		</select>		
+		<br><br><br>
+
+		Friday
+				<br>
+		<select name="fristatus">
+			<option value="open"> Opened </option>
+			<option value="close"> Closed </option>
+		</select>
+		<br>
+		Opening
+		<select name="fri_opening_hours">
+			<option value="0"> 00 </option>
+			<option value="1"> 01 </option>
+			<option value="2"> 02 </option>
+			<option value="3"> 03 </option>
+			<option value="4"> 04 </option>
+			<option value="5"> 05 </option>
+			<option value="6"> 06 </option>
+			<option value="7"> 07 </option>
+			<option value="8"> 08 </option>
+			<option value="9"> 09 </option>
+			<option value="10"> 10 </option>
+			<option value="11"> 11 </option>
+			<option value="12"> 12 </option>
+			<option value="13"> 13 </option>
+			<option value="14"> 14 </option>
+			<option value="15"> 15 </option>
+			<option value="16"> 16 </option>
+			<option value="17"> 17 </option>
+			<option value="18"> 18 </option>
+			<option value="19"> 19 </option>
+			<option value="20"> 20 </option>
+			<option value="21"> 21 </option>
+			<option value="22"> 22 </option>
+			<option value="23"> 23 </option>
+		</select>
+		:
+		<select name="fri_opening_mins">
+			<option value="1"> 00 </option>
+			<option value="2"> 05 </option>
+			<option value="3"> 10 </option>
+			<option value="4"> 15 </option>
+			<option value="5"> 20 </option>
+			<option value="6"> 30 </option>
+			<option value="7"> 35 </option>
+			<option value="8"> 40 </option>
+			<option value="9"> 45 </option>
+			<option value="10"> 50 </option>
+			<option value="11"> 55 </option>
+		</select>
+		<br>
+		Closing
+		<select name="fri_closing_hours">
+			<option value="0"> 00 </option>
+			<option value="1"> 01 </option>
+			<option value="2"> 02 </option>
+			<option value="3"> 03 </option>
+			<option value="4"> 04 </option>
+			<option value="5"> 05 </option>
+			<option value="6"> 06 </option>
+			<option value="7"> 07 </option>
+			<option value="8"> 08 </option>
+			<option value="9"> 09 </option>
+			<option value="10"> 10 </option>
+			<option value="11"> 11 </option>
+			<option value="12"> 12 </option>
+			<option value="13"> 13 </option>
+			<option value="14"> 14 </option>
+			<option value="15"> 15 </option>
+			<option value="16"> 16 </option>
+			<option value="17"> 17 </option>
+			<option value="18"> 18 </option>
+			<option value="19"> 19 </option>
+			<option value="20"> 20 </option>
+			<option value="21"> 21 </option>
+			<option value="22"> 22 </option>
+			<option value="23"> 23 </option>
+		</select>
+		:
+		<select name="fri_closing_mins">
+			<option value="1"> 00 </option>
+			<option value="2"> 05 </option>
+			<option value="3"> 10 </option>
+			<option value="4"> 15 </option>
+			<option value="5"> 20 </option>
+			<option value="6"> 30 </option>
+			<option value="7"> 35 </option>
+			<option value="8"> 40 </option>
+			<option value="9"> 45 </option>
+			<option value="10"> 50 </option>
+			<option value="11"> 55 </option>
+		</select>		
+		<br><br><br>
+
+		Saturday
+				<br>
+		<select name="satstatus">
+			<option value="open"> Opened </option>
+			<option value="close"> Closed </option>
+		</select>
+		<br>
+		Opening
+		<select name="sat_opening_hours">
+			<option value="0"> 00 </option>
+			<option value="1"> 01 </option>
+			<option value="2"> 02 </option>
+			<option value="3"> 03 </option>
+			<option value="4"> 04 </option>
+			<option value="5"> 05 </option>
+			<option value="6"> 06 </option>
+			<option value="7"> 07 </option>
+			<option value="8"> 08 </option>
+			<option value="9"> 09 </option>
+			<option value="10"> 10 </option>
+			<option value="11"> 11 </option>
+			<option value="12"> 12 </option>
+			<option value="13"> 13 </option>
+			<option value="14"> 14 </option>
+			<option value="15"> 15 </option>
+			<option value="16"> 16 </option>
+			<option value="17"> 17 </option>
+			<option value="18"> 18 </option>
+			<option value="19"> 19 </option>
+			<option value="20"> 20 </option>
+			<option value="21"> 21 </option>
+			<option value="22"> 22 </option>
+			<option value="23"> 23 </option>
+		</select>
+		:
+		<select name="sat_opening_mins">
+			<option value="1"> 00 </option>
+			<option value="2"> 05 </option>
+			<option value="3"> 10 </option>
+			<option value="4"> 15 </option>
+			<option value="5"> 20 </option>
+			<option value="6"> 30 </option>
+			<option value="7"> 35 </option>
+			<option value="8"> 40 </option>
+			<option value="9"> 45 </option>
+			<option value="10"> 50 </option>
+			<option value="11"> 55 </option>
+		</select>
+		<br>
+		Closing
+		<select name="sat_closing_hours">
+			<option value="0"> 00 </option>
+			<option value="1"> 01 </option>
+			<option value="2"> 02 </option>
+			<option value="3"> 03 </option>
+			<option value="4"> 04 </option>
+			<option value="5"> 05 </option>
+			<option value="6"> 06 </option>
+			<option value="7"> 07 </option>
+			<option value="8"> 08 </option>
+			<option value="9"> 09 </option>
+			<option value="10"> 10 </option>
+			<option value="11"> 11 </option>
+			<option value="12"> 12 </option>
+			<option value="13"> 13 </option>
+			<option value="14"> 14 </option>
+			<option value="15"> 15 </option>
+			<option value="16"> 16 </option>
+			<option value="17"> 17 </option>
+			<option value="18"> 18 </option>
+			<option value="19"> 19 </option>
+			<option value="20"> 20 </option>
+			<option value="21"> 21 </option>
+			<option value="22"> 22 </option>
+			<option value="23"> 23 </option>
+		</select>
+		:
+		<select name="sat_closing_mins">
+			<option value="1"> 00 </option>
+			<option value="2"> 05 </option>
+			<option value="3"> 10 </option>
+			<option value="4"> 15 </option>
+			<option value="5"> 20 </option>
+			<option value="6"> 30 </option>
+			<option value="7"> 35 </option>
+			<option value="8"> 40 </option>
+			<option value="9"> 45 </option>
+			<option value="10"> 50 </option>
+			<option value="11"> 55 </option>
+		</select>		
+		<br><br><br>
+		<input type="submit" name="submit">
+
+	</form>
+
+
+</body>
+</html>
