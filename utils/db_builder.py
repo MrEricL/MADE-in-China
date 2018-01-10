@@ -11,7 +11,7 @@ Database
 '''
 
 def tableCreation():
-    f="data/restaurant_reservations.db"
+    f="../data/restaurant_reservations.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()         #facilitates db ops
 
@@ -20,7 +20,7 @@ def tableCreation():
     c.execute(user_table)
 
     #Create the restaurants table
-    restaurants_table = 'CREATE TABLE restaurants (restID INTEGER PRIMARY KEY, restname TEXT, userID INTEGER, res_slot INTEGER, res_length INTERGER, grid_x INTERGER, grid_y INTERGER);'
+    restaurants_table = 'CREATE TABLE restaurants (restID INTEGER PRIMARY KEY, restname TEXT, userID INTEGER, res_slot INTEGER, res_length INTERGER, opening_time TEXT, closing_time TEXT, grid_x INTERGER, grid_y INTERGER);'
     c.execute(restaurants_table)
 
     #Create the reservations table
@@ -82,25 +82,26 @@ def checkUsername(userN):
 #restaurant info stuff
 
 #add a restaurant
-def add_rest(rest_name, owner_id, res_slot, res_length, grid_x, grid_y):
-    f="data/restaurant_reservations.db"
+def add_rest(rest_name, owner_id, res_slot, res_length, open_time, close_time, grid_x, grid_y):
+    f="../data/restaurant_reservations.db"
     db = sqlite3.connect(f)
     c = db.cursor()
     
     def get_next_id():
-        command = "SELECT rest_id FROM restaurants"
+        command = "SELECT restID FROM restaurants"
         info = c.execute(command)
 
+        pre_id = -1
         for entry in info:
             ids = entry[0]
-            pre_id = max(ids)
+            pre_id = max(ids or [-1])
         next_id = pre_id + 1
 
         return next_id
 
 
     rest_id = get_next_id()
-    c.execute('INSERT INTO restaurants VALUES (?,?,?,?,?,?,?)',[rest_id, rest_name, owner_id, res_slot, res_length, grid_x, grid_y])
+    c.execute('INSERT INTO restaurants VALUES (?,?,?,?,?,?,?,?,?)',[rest_id, rest_name, owner_id, res_slot, res_length, open_time, close_time, grid_x, grid_y])
         
     db.commit()
     db.close()
@@ -110,17 +111,17 @@ def add_rest(rest_name, owner_id, res_slot, res_length, grid_x, grid_y):
 
 #add table
 def add_table(rest_id, seats, position_list):
-    f="data/restaurant_reservations.db"
+    f="../data/restaurant_reservations.db"
     db = sqlite3.connect(f)
     c = db.cursor()
 
     def get_next_id():
-        command = "SELECT table_id FROM restaurant_layout"
+        command = "SELECT tableID FROM restaurant_layout"
         info = c.execute(command)
 
         for entry in info:
             ids = entry[0]
-            pre_id = max(ids)
+            pre_id = max(ids or [-1])
         next_id = pre_id + 1
 
         return next_id
@@ -133,11 +134,11 @@ def add_table(rest_id, seats, position_list):
 
 #clear all tables for a restaurant
 def clear_tables(rest_id):
-    f="data/restaurant_reservations.db"
+    f="../data/restaurant_reservations.db"
     db = sqlite3.connect(f)
     c = db.cursor()
 
-    c.execute('DELETE FROM rest_layout WHERE rest_id=' + rest_id)
+    c.execute('DELETE FROM rest_layout WHERE restID=' + rest_id)
 
     db.commit()
     db.close()
@@ -179,7 +180,7 @@ def getUserType(username):
         if str(entry[0]) == username:
             retVal = str(entry[1])
     db.close()
-    print str(retVal) + "\n\n\n"
+    #print str(retVal) + "\n\n\n"
     return retVal
 
 def get_user_id(username):
@@ -201,11 +202,11 @@ def get_user_id(username):
 
 #gets a list of restaurants owned by the user
 def get_restaurants(owner_id):
-    f="data/restaurant_reservations.db"
+    f="../data/restaurant_reservations.db"
     db = sqlite3.connect(f)
     c = db.cursor()
 
-    command = 'SELECT rest_name FROM restaurants WHERE user_id=' + owner_id + ';'
+    command = 'SELECT restname FROM restaurants WHERE userID=' + owner_id + ';'
     info = c.execute(command)
 
     rests = []
@@ -217,11 +218,11 @@ def get_restaurants(owner_id):
 
 #gets size of layout grid
 def get_grid_size(rest_id):
-    f="data/restaurant_reservations.db"
+    f="../data/restaurant_reservations.db"
     db = sqlite3.connect(f)
     c = db.cursor()
 
-    command = "SELECT grid_x, grid_y FROM restaurants WHERE rest_id=" + rest_id
+    command = "SELECT grid_x, grid_y FROM restaurants WHERE restID=" + rest_id
     info = c.execute(command)
 
     grid_size = (None, None)
@@ -232,16 +233,45 @@ def get_grid_size(rest_id):
     db.close()
     return grid_size
 
+def get_open_times(rest_id):
+    f="../data/restaurant_reservations.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+
+    command = "SELECT opening_time, closing_time FROM restaurants WHERE restID=" + rest_id
+    info = c.execute(command)
+
+    for entry in info:
+        open_time = entry[0]
+        close_time = entry[1]
+
+    db.close()
+    return open_time, close_time
+
+def get_rest_id(rest_name):
+    f="../data/restaurant_reservations.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+
+    command = 'SELECT restID FROM restaurants WHERE restname="' + rest_name + '"'
+    info = c.execute(command)
+
+    for entry in info:
+        rest_id = entry[0]
+    db.close()
+    return rest_id
+    
+
 #for layout table
 
 #get layout
 #returns a dictionary with the table ids as keys and the corresponding number of seats at each table as entries, and a list of the coordinates of the squares which are tables (the coordinates are tuples)
 def get_layout(rest_id):
-    f="data/restaurant_reservations.db"
+    f="../data/restaurant_reservations.db"
     db = sqlite3.connect(f)
     c = db.cursor()
 
-    command = "SELECT table_id, seats, squares FROM restaurant_layout WHERE rest_id=" + rest_id
+    command = "SELECT tableID, seats, squares FROM restaurant_layout WHERE restID=" + rest_id
     info = c.execute(command)
 
     table_seats = {}
@@ -263,9 +293,20 @@ def get_layout(rest_id):
 if __name__ == '__main__':     
     #TESTING
     #tableCreation()
-    getUserType("a") #0
-    getUserType("cust") #1
-
-    print get_user_id("a")
     
+    #addUser('a', 'pass', 0)
+    #addUser('b', 'pass', 1)
 
+    print getUserType("a") #0
+    print getUserType('b') #1
+
+    print get_user_id('a')
+    print get_user_id('b')
+    
+    add_rest('test', get_user_id('a'), 15, 120, '8:00', '20:00', 20, 20)
+
+    print get_rest_id('test')
+
+    add_table(get_rest_id('test'), 4, [(0,0), (0,1), (0,2)])
+
+    print get_layout(get_rest_id('test'))
