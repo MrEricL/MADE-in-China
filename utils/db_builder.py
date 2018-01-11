@@ -11,7 +11,7 @@ Database
 '''
 
 def tableCreation():
-    f="../data/restaurant_reservations.db"
+    f="data/restaurant_reservations.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()         #facilitates db ops
 
@@ -49,7 +49,7 @@ def check_password(hashed_password, user_password):
 
 #add a user to user table
 def addUser(new_username, new_password, new_type):
-    f="../data/restaurant_reservations.db"
+    f="data/restaurant_reservations.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()         #facilitates db ops
     #global userID_counter
@@ -68,7 +68,7 @@ def addUser(new_username, new_password, new_type):
 
 #if username exist, return true
 def checkUsername(userN):
-    f="../data/restaurant_reservations.db"
+    f="data/restaurant_reservations.db"
     db = sqlite3.connect(f)
     c = db.cursor()
     users = c.execute('SELECT username FROM users;')
@@ -83,7 +83,7 @@ def checkUsername(userN):
 
 #add a restaurant
 def add_rest(rest_name, owner_id, res_slot, res_length, open_time, close_time, grid_x, grid_y):
-    f="../data/restaurant_reservations.db"
+    f="data/restaurant_reservations.db"
     db = sqlite3.connect(f)
     c = db.cursor()
     
@@ -111,7 +111,7 @@ def add_rest(rest_name, owner_id, res_slot, res_length, open_time, close_time, g
 
 #add table
 def add_table(rest_id, seats, position_list):
-    f="../data/restaurant_reservations.db"
+    f="data/restaurant_reservations.db"
     db = sqlite3.connect(f)
     c = db.cursor()
 
@@ -134,7 +134,7 @@ def add_table(rest_id, seats, position_list):
 
 #clear all tables for a restaurant
 def clear_tables(rest_id):
-    f="../data/restaurant_reservations.db"
+    f="data/restaurant_reservations.db"
     db = sqlite3.connect(f)
     c = db.cursor()
 
@@ -154,7 +154,7 @@ def clear_tables(rest_id):
 
 #gets password for a user
 def getPass(username):
-    f="../data/restaurant_reservations.db"
+    f="data/restaurant_reservations.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()         #facilitates db ops
     command = "SELECT username, password FROM users"
@@ -169,7 +169,7 @@ def getPass(username):
 
 #get the type of user (0 is owner, 1 is customer)
 def getUserType(username):
-    f="../data/restaurant_reservations.db"
+    f="data/restaurant_reservations.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()         #facilitates db ops
     command = "SELECT username, userType FROM users"
@@ -184,7 +184,7 @@ def getUserType(username):
     return retVal
 
 def get_user_id(username):
-    f="../data/restaurant_reservations.db"
+    f="data/restaurant_reservations.db"
     db = sqlite3.connect(f) #open if f exists, otherwise create
     c = db.cursor()
 
@@ -202,7 +202,7 @@ def get_user_id(username):
 
 #gets a list of restaurants owned by the user
 def get_restaurants(owner_id):
-    f="../data/restaurant_reservations.db"
+    f="data/restaurant_reservations.db"
     db = sqlite3.connect(f)
     c = db.cursor()
 
@@ -218,7 +218,7 @@ def get_restaurants(owner_id):
 
 #gets size of layout grid
 def get_grid_size(rest_id):
-    f="../data/restaurant_reservations.db"
+    f="data/restaurant_reservations.db"
     db = sqlite3.connect(f)
     c = db.cursor()
 
@@ -234,7 +234,7 @@ def get_grid_size(rest_id):
     return grid_size
 
 def get_open_times(rest_id):
-    f="../data/restaurant_reservations.db"
+    f="data/restaurant_reservations.db"
     db = sqlite3.connect(f)
     c = db.cursor()
 
@@ -249,7 +249,7 @@ def get_open_times(rest_id):
     return open_time, close_time
 
 def get_rest_id(rest_name):
-    f="../data/restaurant_reservations.db"
+    f="data/restaurant_reservations.db"
     db = sqlite3.connect(f)
     c = db.cursor()
 
@@ -267,7 +267,7 @@ def get_rest_id(rest_name):
 #get layout
 #returns a dictionary with the table ids as keys and the corresponding number of seats at each table as entries, and a list of the coordinates of the squares which are tables (the coordinates are tuples)
 def get_layout(rest_id):
-    f="../data/restaurant_reservations.db"
+    f="data/restaurant_reservations.db"
     db = sqlite3.connect(f)
     c = db.cursor()
 
@@ -296,6 +296,7 @@ if __name__ == '__main__':
     
     #addUser('a', 'pass', 0)
     #addUser('b', 'pass', 1)
+    '''
 
     print getUserType("a") #0
     print getUserType('b') #1
@@ -309,4 +310,4 @@ if __name__ == '__main__':
 
     add_table(get_rest_id('test'), 4, [(0,0), (0,1), (0,2)])
 
-    print get_layout(get_rest_id('test'))
+    print get_layout(get_rest_id('test'))'''

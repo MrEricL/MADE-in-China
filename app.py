@@ -95,7 +95,7 @@ def register():
 def home():
     user_type = getUserType (user)
     if 'user' in session:
-        return render_template("home.html",userstatus=user_type)
+        return render_template("registerrest.html",userstatus=user_type)
         
     else:    
         return redirect(url_for("root"))
