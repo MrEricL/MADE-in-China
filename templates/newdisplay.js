@@ -7,7 +7,7 @@ var selectItem = 8;
 var addItem = function(e){
     selectItem += 1;
     var nextElement = document.createElement('LI');
-    nextElement.innerHTML = selectItem;
+    nextElement.innerHTML = "O";
     list.appendChild(nextElement);
 }
 
