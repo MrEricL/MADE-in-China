@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, session, url_for, flash, redirect
 from utils.accounts import authenticate
-from utils.db_builder import checkUsername, addUser, getUserType
+from utils.db_builder import checkUsername, addUser, getUserType, get_user_id, get_restaurants
 import os
 
 app = Flask(__name__)
@@ -95,7 +95,7 @@ def register():
 def home():
     user_type = getUserType (user)
     if 'user' in session:
-        return render_template("registerrest.html",userstatus=user_type)
+        return render_template("home.html",userstatus=user_type)
         
     else:    
         return redirect(url_for("root"))
@@ -108,7 +108,15 @@ def logout():
     flash('You have been logged out successfully')
     return redirect(url_for('root'))
 
+@app.route('/restaurants', methods = ['POST','GET'])
+def restaurants():
+    user_id = get_user_id(session['user'])
+    restaurants = get_restaurants(user_id)
+    return render_template("resturants.html", restaurants=restaurants)
 
+@app.route('/addrest', methods = ['POST','GET'])
+def addrest():
+    return render_template("registerrest.html")
 
 
     

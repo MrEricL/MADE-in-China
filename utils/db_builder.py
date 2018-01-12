@@ -206,7 +206,7 @@ def get_restaurants(owner_id):
     db = sqlite3.connect(f)
     c = db.cursor()
 
-    command = 'SELECT restname FROM restaurants WHERE userID=' + owner_id + ';'
+    command = 'SELECT restname FROM restaurants WHERE userID=' + str(owner_id) + ';'
     info = c.execute(command)
 
     rests = []

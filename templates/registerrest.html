@@ -4,7 +4,7 @@
 	<title> Register a Rest </title>
 </head>
 <body>
-	<form>
+	<form method="POST" action="/newrest">
 		Name: <input type="text" name="restname"> <br><br>
 		Zip Code: <input type="text" onkeypress="return event.charCode>= 48 && event.charCode <= 57" name="zipcode" maxlength="5"> <br><br>
 		Opening Hours:<br>
