@@ -18,30 +18,40 @@
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
   <script>
- $( function() {
+  var tableCount = 0;
+    
+  $( function() {
+    
     $( "#selectable" ).selectable({
+ 
       stop: function() {
+
         $( ".ui-selected" ).selectable({
           disabled: true
         });
         $( ".ui-selected" ).selectable("option", "disabled", true);
 
+        tableCount += 1;
+  
         var len = 0;
         var result = $( "#select-result" ).empty();
         $( ".ui-selected", this ).each(function() {
           var index = $( "#selectable li" ).index( this );
           result.append( " #" + ( index + 1 ) );
           len += 1;
-          result.append( " " + len);
         });
 
         $( ".ui-selected" ).css("background-color", "red");
-        
+
+        $( ".ui-selected" ).html(tableCount);
+
+        var patronCount = prompt("How many people will sit at this table?", "");  
+  
         var log = $("#select-log" );
         $( ".ui-selected", this ).each(function() {
           var index = $( "#selectable li" ).index( this );
-          log.append( "Table of " + len + "consisting of Table " + (index + 1)  + "<br>");
-
+          log.append( "Added table " + tableCount  + " of " + len + " consisting of Seat " + (index + 1)  + " With " + patronCount  + " People" + "<br>");
+          return false; 
         });
       }
     });
@@ -66,46 +76,42 @@
 
 <br>
 
-<p id="log">
-  <span>Your moves so far:</span><br><span id="select-log">none</span>
-</p>
- 
 <ol id="selectable">
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
-  <li class="ui-widget-content">O</li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
+  <li class="ui-widget-content"></li>
   
 </ol>
- 
+
  <button id="add">Add a Table</button>
  <button id="remove">Remove a Table</button>
 
@@ -113,6 +119,10 @@
 
  <button id="anew">Start Anew</button>
 
+ <p id="log">
+   <span>Your moves so far:</span><br><span id="select-log"></span>
+ </p>
+  
  <script src="newdisplay.js"></script>
 
 </body>
