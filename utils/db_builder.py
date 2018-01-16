@@ -28,7 +28,7 @@ def tableCreation():
     c.execute(reservations_table)
 
     #Create the restaurant layout table
-    rest_layout_table = 'CREATE TABLE rest_layout (restID INTEGER, tableID INTEGER, seats INTEGER, squares BLOB);'
+    rest_layout_table = 'CREATE TABLE rest_layout (restID INTEGER, tableID INTEGER, seats INTEGER, squares TEXT);'
     c.execute(rest_layout_table)
 
     db.commit()
@@ -92,9 +92,10 @@ def add_rest(rest_name, owner_id, res_slot, res_length, open_time, close_time, g
         info = c.execute(command)
 
         pre_id = -1
-        for entry in info:
-            ids = entry[0]
+        for ids in info:
+            print (ids)
             pre_id = max(ids or [-1])
+            print (pre_id)
         next_id = pre_id + 1
 
         return next_id
@@ -109,16 +110,34 @@ def add_rest(rest_name, owner_id, res_slot, res_length, open_time, close_time, g
 
 #layout stuff
 
+#make sure tables dont overlap, returns true if they dont overlap
+def check_table_pos(rest_id, position_list):
+    used_positions = get_layout(rest_id)[1]
+    for pos in position_list:
+        if pos in used_positions:
+            return False
+    return True
+    
 #add table
 def add_table(rest_id, seats, position_list):
     f="data/restaurant_reservations.db"
     db = sqlite3.connect(f)
     c = db.cursor()
 
+    #in order to input into table, make the list of positions a string, seperating every square by semi-colons, and xy coordinates by commas.
+    position_string = ''
+    for coor in position_list:
+        x = coor[0]
+        y = coor[1]
+        position_string = position_string + str(x) + ',' + str(y) + ';'
+    position_string = position_string[:-1]
+    print(position_string)
+
     def get_next_id():
-        command = "SELECT tableID FROM restaurant_layout"
+        command = "SELECT tableID FROM rest_layout"
         info = c.execute(command)
 
+        pre_id = -1
         for entry in info:
             ids = entry[0]
             pre_id = max(ids or [-1])
@@ -127,18 +146,18 @@ def add_table(rest_id, seats, position_list):
         return next_id
 
     table_id = get_next_id()
-    c.execute('INSERT INTO rest_layout VALUES (?,?,?,?)', [rest_id, table_id, seats, position_list])
+    c.execute('INSERT INTO rest_layout VALUES (?,?,?,?)', [rest_id, table_id, seats, position_string])
 
     db.commit()
     db.close()
 
 #clear all tables for a restaurant
 def clear_tables(rest_id):
-    f="data/restaurant_reservations.db"
+    f="../data/restaurant_reservations.db"
     db = sqlite3.connect(f)
     c = db.cursor()
 
-    c.execute('DELETE FROM rest_layout WHERE restID=' + rest_id)
+    c.execute('DELETE FROM rest_layout WHERE restID=' + str(rest_id))
 
     db.commit()
     db.close()
@@ -271,7 +290,7 @@ def get_layout(rest_id):
     db = sqlite3.connect(f)
     c = db.cursor()
 
-    command = "SELECT tableID, seats, squares FROM restaurant_layout WHERE restID=" + rest_id
+    command = "SELECT tableID, seats, squares FROM rest_layout WHERE restID=" + str(rest_id)
     info = c.execute(command)
 
     table_seats = {}
@@ -282,9 +301,14 @@ def get_layout(rest_id):
 
         table_seats[table_id] = num_seats
         
-        pos_arr = entry[2]
-        for coor in pos_arr:
-            squares.append(coor)
+        pos_str = entry[2]
+        #print (pos_str)
+        pos_list = pos_str.split(';')
+        for coor_str in pos_list:
+            x = int(coor_str.split(',')[0])
+            y = int(coor_str.split(',')[1])
+            squares.append((x,y))
+        
 
     db.close()
     return table_seats, squares
@@ -296,18 +320,20 @@ if __name__ == '__main__':
     
     #addUser('a', 'pass', 0)
     #addUser('b', 'pass', 1)
-    '''
 
-    print getUserType("a") #0
-    print getUserType('b') #1
+    '''print (getUserType("a")) #0
+    print (getUserType('b')) #1
 
-    print get_user_id('a')
-    print get_user_id('b')
+    print (get_user_id('a'))
+    print (get_user_id('b'))
     
-    add_rest('test', get_user_id('a'), 15, 120, '8:00', '20:00', 20, 20)
+    #add_rest('test', get_user_id('a'), 15, 120, '8:00', '20:00', 20, 20)
 
-    print get_rest_id('test')
+    print (get_rest_id('test'))
 
-    add_table(get_rest_id('test'), 4, [(0,0), (0,1), (0,2)])
+    #clear_tables(get_rest_id('test'))
+    if check_table_pos(get_rest_id('test'), [(0,0), (0,1), (0,2)]):
+        print('adding new table')
+        add_table(get_rest_id('test'), 4, [(0,0), (0,1), (0,2)])
 
-    print get_layout(get_rest_id('test'))'''
+    print (get_layout(get_rest_id('test')))'''
