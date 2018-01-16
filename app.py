@@ -117,8 +117,7 @@ def restaurants():
 @app.route('/addrest', methods = ['POST','GET'])
 def addrest():
     return render_template("registerrest.html")
-
-
+    
     
 if __name__ == '__main__':
     app.run(debug=True)

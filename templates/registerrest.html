@@ -1,16 +1,42 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title> Register a Rest </title>
-</head>
-<body>
-	<form method="POST" action="/newrest">
+  <head>
+     <meta charset="utf-8">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="style.css">
+    
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+    <title> Register a Restaurant </title>
+  </head>
+  
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+	<div class="navbar-header">
+	  <a class="navbar-brand" href="/home">MADE in China</a>
+	</div>
+	<ul class="nav navbar-nav">
+	  <li class="active"><a href="#">Home</a></li>
+	  <li><a href="/restaurants">Restaurants</a></li>
+	  <li><a href="/logout">Logout</a></li>
+	</ul>
+      </div>
+    </nav>
 		Name: <input type="text" name="restname"> <br><br>
 		Zip Code: <input type="text" onkeypress="return event.charCode>= 48 && event.charCode <= 57" name="zipcode" maxlength="5"> <br><br>
 		Opening Hours:<br>
 		Sunday
 		<br>
 		<select name="sunstatus" id="sunstatus">
+		  
 			<option value="open"> Opened </option>
 			<option value="close"> Closed </option>
 		</select>
