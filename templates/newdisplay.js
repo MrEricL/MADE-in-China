@@ -1,3 +1,5 @@
+var submitButton = document.getElementById('submit');
+var anewButton = document.getElementById('anew');
 var addButton = document.getElementById("add");
 var removeButton = document.getElementById("remove");
 var list = document.getElementById("selectable");
@@ -20,3 +22,15 @@ var removeItem = function(e){
 }
 
 removeButton.addEventListener('click', removeItem);
+
+var submit = function(e){
+    $("#selectable").selectable("destroy");
+}
+
+submitButton.addEventListener("click", submit);
+
+var anew = function(e){
+    document.location.reload();
+}
+
+anewButton.addEventListener("click", anew);

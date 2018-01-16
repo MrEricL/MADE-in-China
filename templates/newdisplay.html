@@ -10,7 +10,7 @@
   <style>
     #feedback { font-size: 1.4em; }
   #selectable .ui-selectee {background: #0000ff; color: #7FFF00; }
-  #selectable .ui-selecting { background: #000000; color: #ffff00; }
+  #selectable .ui-selecting { background: #000000; color: #white; }
   #selectable .ui-selected { background: #ff0000; color: white; }
   #selectable { list-style-type: none; margin: 10; padding: 10; width: 900px; }
   #selectable li { margin: 3px; padding: 1px; float: left; width: 100px; height: 80px; font-size: 4em; text-align: center; }
@@ -21,23 +21,53 @@
  $( function() {
     $( "#selectable" ).selectable({
       stop: function() {
+        $( ".ui-selected" ).selectable({
+          disabled: true
+        });
+        $( ".ui-selected" ).selectable("option", "disabled", true);
+
+        var len = 0;
         var result = $( "#select-result" ).empty();
         $( ".ui-selected", this ).each(function() {
           var index = $( "#selectable li" ).index( this );
           result.append( " #" + ( index + 1 ) );
+          len += 1;
+          result.append( " " + len);
+        });
+
+        $( ".ui-selected" ).css("background-color", "red");
+        
+        var log = $("#select-log" );
+        $( ".ui-selected", this ).each(function() {
+          var index = $( "#selectable li" ).index( this );
+          log.append( "Table of " + len + "consisting of Table " + (index + 1)  + "<br>");
+
         });
       }
     });
   } );
   </script>
   <script>
-    $( "#selectable option:selected" ).text();
+    $(document).ready( function() {
+      $(":enabled").css("border", "3px solid green");
+        $( ".ui-selected" ).selectable({
+          disabled: true
+        });
+        $( ".ui-selected" ).selectable("option", "disabled", true);
+    });
   </script>
+
 </head>
 <body>
  
 <p id="feedback">
-<span>You've selected:</span> <span id="select-result">none</span>.
+  <span>You've selected:</span> <span id="select-result">none</span>.
+</p>
+
+<br>
+
+<p id="log">
+  <span>Your moves so far:</span><br><span id="select-log">none</span>
 </p>
  
 <ol id="selectable">
@@ -80,6 +110,8 @@
  <button id="remove">Remove a Table</button>
 
  <button id="submit">Submit Tables</button>
+
+ <button id="anew">Start Anew</button>
 
  <script src="newdisplay.js"></script>
 
