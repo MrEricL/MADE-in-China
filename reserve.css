@@ -19,7 +19,7 @@
     font-family: Tahoma;
     font-size: 12px;
  
-    background: #141517;
+    background: #ffffff;
  
     -webkit-border-radius: 3px;
     -moz-border-radius: 3px;
@@ -116,7 +116,7 @@
  
     text-align: center;
     font-weight: normal;
-    color: #a8a8a8;
+    color: #ff0000;
 }
 
 
@@ -139,12 +139,12 @@
     border: 1px solid transparent;
 }
 
-
+s
 .ui-datepicker-calendar .ui-state-active {
     color: #6a9113;
     border: 1px solid #6a9113;
 }
  
-.ui-datepicker-other-month .ui-state-default { color: #565656; }
+.ui-datepicker-other-month .ui-state-default { color: #ff0000; }
 
 
