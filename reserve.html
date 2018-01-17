@@ -3,59 +3,76 @@
 
 
 <head>
-<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
- 
   <style>
+  #datep {
+  display: none;
+}
 
-  </style>
-  <script src="https://code.jquery.com/jquery-1.9.1.js"></script>
-  <script src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+.ui-datepicker-calendar tbody td > a.hover-calendar-cell {
+  border: 1px solid #074e91;
+  background: #5bacf7 url(images/ui-bg_glass_15_5bacf7_1x400.png) 50% 50% repeat-x;
+  font-weight: normal;
+  color: #1a1a1a;
+}
+
+#addon {
+  background-color: #999;
+  width: 100%
+}
+
+
+</style>
+
+<script
+  src="https://code.jquery.com/jquery-1.9.1.js"
+
+  crossorigin="anonymous"></script>
+
+<script
+  src="https://code.jquery.com/ui/1.9.2/jquery-ui.js"
+
+  crossorigin="anonymous"></script>
+
   <script>
+$(document).ready(function(){
+  var $datePicker = $("div#datepicker");
 
-var $datePicker = $("div#datepicker");
-
-var $datePicker = $("div");
+  var $datePicker = $("div");
 
 
-$datePicker.datepicker({
-  beforeShowDay: function(date) {
-    var day = date.getDay();
-    return [(day != 0 && day != 6)];
-  },
-  changeMonth: true,
-  maxDate: "+2m",
-  minDate: "+0d",
-  changeYear: false,
-  inline: true,
-  altField: "#actualDate",
-  onSelect: function(dateText, inst) {
-    var date = $(this).datepicker('getDate'),
-      day = date.getDate(),
-      month = date.getMonth() + 1;
+  $datePicker.datepicker({
+    beforeShowDay: function(date) {
+      var day = date.getDay();
+      return [(day != 0 && day != 6)];
+    },
+    changeMonth: true,
+    maxDate: "+2m",
+    minDate: "+0d",
+    changeYear: false,
+    inline: true,
+    altField: "#actualDate",
+    onSelect: function(dateText, inst) {
+      var date = $(this).datepicker('getDate'),
+        day = date.getDate(),
+        month = date.getMonth() + 1;
 
-    console.log(month + "/" + day);
-    window.location.replace("https://www.google.com");
-  }
-})
+      console.log(month + "/" + day);
+      window.location.replace("https://www.google.com");
+    }
+  })
+
+});
 
   </script>
 </head>
 
-
-
-
 <body>
 
-	<input type="text" id="datep" />
+	<!--<input type="text" id="datep" />-->
 <div id="datepicker">
 
 
 </div>
-
-
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
-
 
 </body>
 
