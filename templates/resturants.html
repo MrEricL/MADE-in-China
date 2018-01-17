@@ -11,7 +11,15 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    
+
+    <style>
+      .content{
+      margin: 25px 50px 75px 50px;
+      }
+      .navbar{
+      margin: 25px 50px 50px 25px;
+      }
+    </style>
 
     <title>Home</title>
   </head>
@@ -30,17 +38,19 @@
       </div>
     </nav>
 
-    <table>
-      <tr>
-	<th>Restaurant</th>
-      </tr>
-      {% for rest in restaurants %}
-      <tr>
-	<td>{{rest}}</td>
-      </tr>
-      {% endfor %}
-    </table>
-    <br><br>
-   <a href="/addrest">Add a new restaurant</a>
+    <div class="content">
+      <table>
+	<tr>
+	  <th>Restaurant</th>
+	</tr>
+	{% for rest in restaurants %}
+	<tr>
+	  <td>{{rest}}</td>
+	</tr>
+	{% endfor %}
+      </table>
+      <br><br>
+      <a href="/addrest">Add a new restaurant</a>
+    </div>
   </body>
 </html>

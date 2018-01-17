@@ -5,13 +5,21 @@
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    
-    <!-- jQuery library -->
+
+     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    
+
+    <style>
+      .content{
+      margin: 25px 50px 75px 50px;
+      }
+      .navbar{
+      margin: 25px 50px 50px 25px;
+      }
+    </style>
 
     <title>Home</title>
 </head>
@@ -29,14 +37,14 @@
       </ul>
     </div>
   </nav>
-  
-  {%if userstatus == 0%}
-  <p>You are an owner!</p>
-  {%else%}
-  <p>You are a customer!</p>
-  {% endif %}
-  <br><br>
-  
-  <a href = "/logout"> Logout </a>
+
+  <div class="content">
+    {%if userstatus == 0%}
+    <p>You are an owner!</p>
+    {%else%}
+    <p>You are a customer!</p>
+    {% endif %}
+    <br><br>
+  </div>
 </body>
 </html>

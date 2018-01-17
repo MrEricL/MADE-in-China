@@ -5,7 +5,7 @@
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+    
     <link rel="stylesheet" type="text/css" href="style.css">
     
     <!-- jQuery library -->
@@ -13,6 +13,15 @@
     
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+      .content{
+      margin: 25px 50px 75px 50px;
+      }
+      .navbar{
+      margin: 25px 50px 50px 25px;
+      }
+    </style>
     
     <title> Register a Restaurant </title>
   </head>
@@ -30,6 +39,9 @@
 	</ul>
       </div>
     </nav>
+
+    <div class="content">
+      <form>
 		Name: <input type="text" name="restname"> <br><br>
 		Zip Code: <input type="text" onkeypress="return event.charCode>= 48 && event.charCode <= 57" name="zipcode" maxlength="5"> <br><br>
 		Opening Hours:<br>
@@ -693,7 +705,8 @@
 		<br><br><br>
 		<input type="submit" name="submit">
 
-	</form>
- 	<script src="registerrest.js"></script>
-</body>
+      </form>
+      <script src="registerrest.js"></script>
+    </div>
+  </body>
 </html>
