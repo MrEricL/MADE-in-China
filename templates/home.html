@@ -45,6 +45,12 @@
     <p>You are a customer!</p>
     {% endif %}
     <br><br>
+    {%if userstatus == 0%}
+
+    {%else%}
+    <!-- MOVE -->
+        <p><a href="/addrest"> Click here to create your rest! </p>
+    {% endif %}
   </div>
 </body>
 </html>

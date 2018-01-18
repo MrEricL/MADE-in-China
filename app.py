@@ -95,6 +95,7 @@ def register():
 def home():
     user_type = getUserType (user)
     if 'user' in session:
+        print "This is the user type: " + str(user_type)
         return render_template("home.html",userstatus=user_type)
         
     else:    
@@ -117,7 +118,15 @@ def restaurants():
 @app.route('/addrest', methods = ['POST','GET'])
 def addrest():
     return render_template("registerrest.html")
-    
+
+@app.route('/addrest', methods = ['POST','GET'])
+def newrest():
+    print request.form
+    return render_template("registerrest.html")
+
+@app.route('/book',methods=['POST','GET'])
+def book():
+    return render_template("reserve.html")
     
 if __name__ == '__main__':
     app.run(debug=True)

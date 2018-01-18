@@ -14,6 +14,7 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+
     <style>
       .content{
       margin: 25px 50px 75px 50px;
@@ -32,7 +33,7 @@
 	<div class="navbar-header">
 	  <a class="navbar-brand" href="/home">MADE in China</a>
 	</div>
-	<ul class="nav navbar-nav">
+	<ul class="nav navbar-nav"
 	  <li class="active"><a href="#">Home</a></li>
 	  <li><a href="/restaurants">Restaurants</a></li>
 	  <li><a href="/logout">Logout</a></li>
@@ -41,13 +42,13 @@
     </nav>
 
     <div class="content">
-      <form>
-		Name: <input type="text" name="restname"> <br><br>
-		Zip Code: <input type="text" onkeypress="return event.charCode>= 48 && event.charCode <= 57" name="zipcode" maxlength="5"> <br><br>
+      <form method="POST" action="/newrest">
+		Name: <input required type="text" name="restname"> <br><br>
+		Zip Code: <input required type="text" onkeypress="return event.charCode>= 48 && event.charCode <= 57" name="zipcode" maxlength="5"> <br><br>
 		Opening Hours:<br>
 		Sunday
 		<br>
-		<select name="sunstatus" id="sunstatus">
+		<select required name="sunstatus" id="sunstatus">
 		  
 			<option value="open"> Opened </option>
 			<option value="close"> Closed </option>
@@ -56,7 +57,7 @@
 		<div id="sunstatushour">
 			<br>
 			Opening
-			<select name="sun_opening_hours">
+			<select required name="sun_opening_hours">
 				<option value="0"> 00 </option>
 				<option value="1"> 01 </option>
 				<option value="2"> 02 </option>
@@ -83,7 +84,7 @@
 				<option value="23"> 23 </option>
 			</select>
 			:
-			<select name="sun_opening_mins">
+			<select required name="sun_opening_mins">
 				<option value="1"> 00 </option>
 				<option value="2"> 05 </option>
 				<option value="3"> 10 </option>
@@ -98,7 +99,7 @@
 			</select>
 			<br>
 			Closing
-			<select name="sun_closing_hours">
+			<select required name="sun_closing_hours">
 				<option value="0"> 00 </option>
 				<option value="1"> 01 </option>
 				<option value="2"> 02 </option>
@@ -125,7 +126,7 @@
 				<option value="23"> 23 </option>
 			</select>
 			:
-			<select name="sun_closing_mins">
+			<select required name="sun_closing_mins">
 				<option value="1"> 00 </option>
 				<option value="2"> 05 </option>
 				<option value="3"> 10 </option>
@@ -139,17 +140,17 @@
 				<option value="11"> 55 </option>
 			</select>	
 		</div>	
-		<br><br><br>
+		<br>
 		Monday
 				<br>
-		<select name="monstatus" id="monstatus">
+		<select required name="monstatus" id="monstatus">
 			<option value="open"> Opened </option>
 			<option value="close"> Closed </option>
 		</select>
 		<div id="monstatushour">
 		<br>
 		Opening
-		<select name="mon_opening_hours">
+		<select required name="mon_opening_hours">
 			<option value="0"> 00 </option>
 			<option value="1"> 01 </option>
 			<option value="2"> 02 </option>
@@ -176,7 +177,7 @@
 			<option value="23"> 23 </option>
 		</select>
 		:
-		<select name="mon_opening_mins">
+		<select required name="mon_opening_mins">
 			<option value="1"> 00 </option>
 			<option value="2"> 05 </option>
 			<option value="3"> 10 </option>
@@ -191,7 +192,7 @@
 		</select>
 		<br>
 		Closing
-		<select name="mon_closing_hours">
+		<select required name="mon_closing_hours">
 			<option value="0"> 00 </option>
 			<option value="1"> 01 </option>
 			<option value="2"> 02 </option>
@@ -218,7 +219,7 @@
 			<option value="23"> 23 </option>
 		</select>
 		:
-		<select name="mon_closing_mins">
+		<select required name="mon_closing_mins">
 			<option value="1"> 00 </option>
 			<option value="2"> 05 </option>
 			<option value="3"> 10 </option>
@@ -232,18 +233,18 @@
 			<option value="11"> 55 </option>
 		</select>	
 		</div>	
-		<br><br><br>
+		<br>
 
 		Tuesday
 			<br>
-		<select name="tuesstatus" id="tuesstatus">
+		<select required name="tuesstatus" id="tuesstatus">
 			<option value="open"> Opened </option>
 			<option value="close"> Closed </option>
 		</select>
 		<div id="tuesstatushour">
 		<br>
 		Opening
-		<select name="tues_opening_hours">
+		<select required name="tues_opening_hours">
 			<option value="0"> 00 </option>
 			<option value="1"> 01 </option>
 			<option value="2"> 02 </option>
@@ -270,7 +271,7 @@
 			<option value="23"> 23 </option>
 		</select>
 		:
-		<select name="tues_opening_mins">
+		<select required name="tues_opening_mins">
 			<option value="1"> 00 </option>
 			<option value="2"> 05 </option>
 			<option value="3"> 10 </option>
@@ -285,7 +286,7 @@
 		</select>
 		<br>
 		Closing
-		<select name="tues_closing_hours">
+		<select required name="tues_closing_hours">
 			<option value="0"> 00 </option>
 			<option value="1"> 01 </option>
 			<option value="2"> 02 </option>
@@ -312,7 +313,7 @@
 			<option value="23"> 23 </option>
 		</select>
 		:
-		<select name="tues_closing_mins">
+		<select required name="tues_closing_mins">
 			<option value="1"> 00 </option>
 			<option value="2"> 05 </option>
 			<option value="3"> 10 </option>
@@ -326,18 +327,18 @@
 			<option value="11"> 55 </option>
 		</select>		
 	</div>
-		<br><br><br>
+		<br>
 
 		Wendesday
 				<br>
-		<select name="wedstatus" id="wedstatus">
+		<select required name="wedstatus" id="wedstatus">
 			<option value="open"> Opened </option>
 			<option value="close"> Closed </option>
 		</select>
 		<div id="wedstatushour">
 		<br>
 		Opening
-		<select name="wed_opening_hours">
+		<select required name="wed_opening_hours">
 			<option value="0"> 00 </option>
 			<option value="1"> 01 </option>
 			<option value="2"> 02 </option>
@@ -364,7 +365,7 @@
 			<option value="23"> 23 </option>
 		</select>
 		:
-		<select name="wed_opening_mins">
+		<select required name="wed_opening_mins">
 			<option value="1"> 00 </option>
 			<option value="2"> 05 </option>
 			<option value="3"> 10 </option>
@@ -379,7 +380,7 @@
 		</select>
 		<br>
 		Closing
-		<select name="wed_closing_hours">
+		<select required name="wed_closing_hours">
 			<option value="0"> 00 </option>
 			<option value="1"> 01 </option>
 			<option value="2"> 02 </option>
@@ -406,7 +407,7 @@
 			<option value="23"> 23 </option>
 		</select>
 		:
-		<select name="wed_opening_mins">
+		<select required name="wed_opening_mins">
 			<option value="1"> 00 </option>
 			<option value="2"> 05 </option>
 			<option value="3"> 10 </option>
@@ -420,18 +421,18 @@
 			<option value="11"> 55 </option>
 		</select>	
 		</div>	
-		<br><br><br>
+		<br>
 		<br>
 		Thursday
 				<br>
-		<select name="thurstatus" id="thurstatus">
+		<select required name="thurstatus" id="thurstatus">
 			<option value="open"> Opened </option>
 			<option value="close"> Closed </option>
 		</select>
 		<div id="thurstatushour">
 		<br>
 		Opening
-		<select name="thur_opening_hours">
+		<select required name="thur_opening_hours">
 			<option value="0"> 00 </option>
 			<option value="1"> 01 </option>
 			<option value="2"> 02 </option>
@@ -458,7 +459,7 @@
 			<option value="23"> 23 </option>
 		</select>
 		:
-		<select name="thur_opening_mins">
+		<select required name="thur_opening_mins">
 			<option value="1"> 00 </option>
 			<option value="2"> 05 </option>
 			<option value="3"> 10 </option>
@@ -473,7 +474,7 @@
 		</select>
 		<br>
 		Closing
-		<select name="thur_closing_hours">
+		<select required name="thur_closing_hours">
 			<option value="0"> 00 </option>
 			<option value="1"> 01 </option>
 			<option value="2"> 02 </option>
@@ -500,7 +501,7 @@
 			<option value="23"> 23 </option>
 		</select>
 		:
-		<select name="thur_closing_mins">
+		<select required name="thur_closing_mins">
 			<option value="1"> 00 </option>
 			<option value="2"> 05 </option>
 			<option value="3"> 10 </option>
@@ -514,18 +515,18 @@
 			<option value="11"> 55 </option>
 		</select>	
 		</div>	
-		<br><br><br>
+		<br>
 
 		Friday
 				<br>
-		<select name="fristatus" id="fristatus">
+		<select required name="fristatus" id="fristatus">
 			<option value="open"> Opened </option>
 			<option value="close"> Closed </option>
 		</select>
 		<div id="fristatushour">
 		<br>
 		Opening
-		<select name="fri_opening_hours">
+		<select required name="fri_opening_hours">
 			<option value="0"> 00 </option>
 			<option value="1"> 01 </option>
 			<option value="2"> 02 </option>
@@ -552,7 +553,7 @@
 			<option value="23"> 23 </option>
 		</select>
 		:
-		<select name="fri_opening_mins">
+		<select required name="fri_opening_mins">
 			<option value="1"> 00 </option>
 			<option value="2"> 05 </option>
 			<option value="3"> 10 </option>
@@ -567,7 +568,7 @@
 		</select>
 		<br>
 		Closing
-		<select name="fri_closing_hours">
+		<select required name="fri_closing_hours">
 			<option value="0"> 00 </option>
 			<option value="1"> 01 </option>
 			<option value="2"> 02 </option>
@@ -594,7 +595,7 @@
 			<option value="23"> 23 </option>
 		</select>
 		:
-		<select name="fri_closing_mins">
+		<select required name="fri_closing_mins">
 			<option value="1"> 00 </option>
 			<option value="2"> 05 </option>
 			<option value="3"> 10 </option>
@@ -608,18 +609,18 @@
 			<option value="11"> 55 </option>
 		</select>	
 		</div>	
-		<br><br><br>
+		<br>
 
 		Saturday
 				<br>
-		<select name="satstatus" id="satstatus">
+		<select required name="satstatus" id="satstatus">
 			<option value="open"> Opened </option>
 			<option value="close"> Closed </option>
 		</select>
 		<div id="satstatushour">
 		<br>
 		Opening
-		<select name="sat_opening_hours">
+		<select required name="sat_opening_hours">
 			<option value="0"> 00 </option>
 			<option value="1"> 01 </option>
 			<option value="2"> 02 </option>
@@ -646,7 +647,7 @@
 			<option value="23"> 23 </option>
 		</select>
 		:
-		<select name="sat_opening_mins">
+		<select required name="sat_opening_mins">
 			<option value="1"> 00 </option>
 			<option value="2"> 05 </option>
 			<option value="3"> 10 </option>
@@ -661,7 +662,7 @@
 		</select>
 		<br>
 		Closing
-		<select name="sat_closing_hours">
+		<select required name="sat_closing_hours">
 			<option value="0"> 00 </option>
 			<option value="1"> 01 </option>
 			<option value="2"> 02 </option>
@@ -688,7 +689,7 @@
 			<option value="23"> 23 </option>
 		</select>
 		:
-		<select name="sat_closing_mins">
+		<select required name="sat_closing_mins">
 			<option value="1"> 00 </option>
 			<option value="2"> 05 </option>
 			<option value="3"> 10 </option>
@@ -702,11 +703,13 @@
 			<option value="11"> 55 </option>
 		</select>	
 		</div>	
-		<br><br><br>
-		<input type="submit" name="submit">
+		<br>
+		<input required type="submit" name="submit">
 
       </form>
-      <script src="registerrest.js"></script>
+      
     </div>
+       <script type="text/javascript" src="../static/registerrest.js"></script>
   </body>
+
 </html>
