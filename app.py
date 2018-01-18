@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, session, url_for, flash, redi
 from utils.accounts import authenticate
 from utils.db_builder import checkUsername, addUser, getUserType, get_user_id, get_restaurants
 import os
+from urlparse import urlparse
 
 app = Flask(__name__)
 #Cookie/Login Stuff
@@ -108,22 +109,110 @@ def logout():
     session.pop('user')
     flash('You have been logged out successfully')
     return redirect(url_for('root'))
-
+#list of rests
 @app.route('/restaurants', methods = ['POST','GET'])
 def restaurants():
     user_id = get_user_id(session['user'])
     restaurants = get_restaurants(user_id)
     return render_template("resturants.html", restaurants=restaurants)
 
+#the actual page to make a new rest
 @app.route('/addrest', methods = ['POST','GET'])
 def addrest():
     return render_template("registerrest.html")
 
-@app.route('/addrest', methods = ['POST','GET'])
+# Accepts/parse the form to make new rest
+@app.route('/newrest', methods = ['POST','GET'])
 def newrest():
-    print request.form
-    return render_template("registerrest.html")
+    ''' FOR CHECKING ARGS
+    for each in request.args:
+        print each + " " + request.args[each]
+        print "\n\n"
+    '''
+    masterDict = dictBuilder(request.args)
 
+    return render_template("registerrest.html")
+### DICT STRING
+### 000 = SUNDAY
+### {'000':['12','00','23','00']}
+def dictBuilder(d):
+    ret = {}
+    ret['name'] = d['restname']
+    ret['zip'] = d['zip']
+    closed = []
+    #Monday
+    if d['monstatus'] == 'open':
+        monList = []
+        monList.append(d['mon_opening_hours'])
+        monList.append(d['mon_opening_mins'])
+        monList.append(d['mon_closing_hours'])
+        monList.append(d['mon_closing_mins'])
+        ret['001'] = monList
+    else:
+        closed.append['001']
+    #Tuesday
+    if d['tuesstatus'] == 'open':
+            tuesList = []
+            tuesList.append(d['tues_opening_hours'])
+            tuesList.append(d['tues_opening_mins'])
+            tuesList.append(d['tues_closing_hours'])
+            tuesList.append(d['tues_closing_mins'])
+            ret['002'] = tuesList
+    else:
+            closed.append['002']
+    #Wednesday
+    if d['wedstatus'] == 'open':
+        wedList = []
+        wedList.append(d['wed_opening_hours'])
+        wedList.append(d['wed_opening_mins'])
+        wedList.append(d['wed_closing_hours'])
+        wedList.append(d['wed_closing_mins'])
+        ret['003'] = wedList
+    else:
+        closed.append['003']
+    #Thursday
+    if d['thurstatus'] == 'open':
+        thurList = []
+        thurList.append(d['thur_opening_hours'])
+        thurList.append(d['thur_opening_mins'])
+        thurList.append(d['thur_closing_hours'])
+        thurList.append(d['thur_closing_mins'])
+        ret['004'] = thurList
+    else:
+        closed.append['004']
+    #Friday
+    if d['fristatus'] == 'open':
+        friList = []
+        friList.append(d['fri_opening_hours'])
+        friList.append(d['fri_opening_mins'])
+        friList.append(d['fri_closing_hours'])
+        friList.append(d['fri_closing_mins'])
+        ret['005'] = friList
+    else:
+        closed.append['005']
+    #Saturday
+    if d['satstatus'] == 'open':
+        satList = []
+        satList.append(d['sat_opening_hours'])
+        satList.append(d['sat_opening_mins'])
+        satList.append(d['sat_closing_hours'])
+        satList.append(d['sat_closing_mins'])
+        ret['006'] = satList
+    else:
+        closed.append['006']
+    #Sunday
+    if d['sunstatus'] == 'open':
+        sunList = []
+        sunList.append(d['sun_opening_hours'])
+        sunList.append(d['sun_opening_mins'])
+        sunList.append(d['sun_closing_hours'])
+        sunList.append(d['sun_closing_mins'])
+        ret['001'] = sunList
+    else:
+        closed.append['000']
+    ret['closed'] = closed
+    return ret
+#way for customers to book
 @app.route('/book',methods=['POST','GET'])
 def book():
     return render_template("reserve.html")
