@@ -147,6 +147,7 @@ def dictBuilder(d):
     ret = {}
     ret['name'] = d['restname']
     ret['zip'] = d['zipcode']
+    ret['reslen'] = d['reslen']
     closed = []
 
     #Monday
@@ -158,6 +159,7 @@ def dictBuilder(d):
         monList.append(d['mon_closing_mins'])
         ret['001'] = monList
 
+
     else:
         closed.append('001')
 
@@ -165,29 +167,27 @@ def dictBuilder(d):
     #Tuesday
     if d['tuesstatus'] == 'open':
 
-            tuesList = []
-            tuesList.append(d['tues_opening_hours'])
-            tuesList.append(d['tues_opening_mins'])
-            tuesList.append(d['tues_closing_hours'])
-            tuesList.append(d['tues_closing_mins'])
-            #print tuesList[0] + " " + tuesList[1] + " " + tuesList[2] + " " +tuesList[3]
-            ret['002'] = tuesList
-
+        tuesList = []
+        tuesList.append(d['tues_opening_hours'])
+        tuesList.append(d['tues_opening_mins'])
+        tuesList.append(d['tues_closing_hours'])
+        tuesList.append(d['tues_closing_mins'])
+        #print tuesList[0] + " " + tuesList[1] + " " + tuesList[2] + " " +tuesList[3]
+        ret['002'] = tuesList
     else:
         closed.append('002')
 
     #Wednesday
     if d['wedstatus'] == 'open':
         wedList = []
+        print d['wed_closing_mins']
         wedList.append(d['wed_opening_hours'])
-        print "Worked1"
         wedList.append(d['wed_opening_mins'])
-        print "Worked2"
         wedList.append(d['wed_closing_hours'])
-        print "Worked3"
         wedList.append(d['wed_closing_mins'])
         ret['003'] = wedList
-        print 'hi'
+        print "hi999hbj"
+
     else:
         closed.append('003')
 
@@ -234,7 +234,7 @@ def dictBuilder(d):
         sunList.append(d['sun_opening_mins'])
         sunList.append(d['sun_closing_hours'])
         sunList.append(d['sun_closing_mins'])
-        ret['001'] = sunList
+        ret['000'] = sunList
 
     else:
         closed.append('000')

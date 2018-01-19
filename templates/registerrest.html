@@ -45,6 +45,22 @@
       <form method="GET" action="/newrest">
 		Name: <input required type="text" name="restname"> <br><br>
 		Zip Code: <input required type="text" onkeypress="return event.charCode>= 48 && event.charCode <= 57" name="zipcode" maxlength="5"> <br><br>
+		Reservation Length: <select required name="reslen" id="reslen">
+		  
+			<option value="5"> 5 min </option>
+			<option value="10"> 10 min</option>
+			<option value="15"> 15 min</option>
+			<option value="20"> 20 min</option>
+			<option value="25"> 25 min</option>
+			<option value="30"> 30 min</option>
+			<option value="35"> 35 min</option>
+			<option value="40"> 40 min</option>
+			<option value="45"> 45 min</option>
+			<option value="50"> 50 min</option>
+			<option value="55"> 55 min</option>
+			<option value="60"> 1 hour </option>
+		</select>
+		<br><br>
 		Opening Hours:<br>
 		Sunday
 		<br>
@@ -53,6 +69,8 @@
 			<option value="open"> Opened </option>
 			<option value="close"> Closed </option>
 		</select>
+		<br>
+
 
 		<div id="sunstatushour">
 			<br>
@@ -407,7 +425,7 @@
 			<option value="23"> 23 </option>
 		</select>
 		:
-		<select required name="wed_opening_mins">
+		<select required name="wed_closing_mins">
 			<option value="00"> 00 </option>
 			<option value="05"> 05 </option>
 			<option value="10"> 10 </option>
