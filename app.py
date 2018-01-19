@@ -128,8 +128,16 @@ def newrest():
     for each in request.args:
         print each + " " + request.args[each]
         print "\n\n"
+    
+    print request.args['tues_opening_hours'] 
+    print "\n\n"
+    print request.args['monstatus']  == 'open'
     '''
     masterDict = dictBuilder(request.args)
+    for each in masterDict:
+
+        print each + ": " + str(masterDict[each])
+        print "\n\n"
 
     return render_template("registerrest.html")
 ### DICT STRING
@@ -138,8 +146,9 @@ def newrest():
 def dictBuilder(d):
     ret = {}
     ret['name'] = d['restname']
-    ret['zip'] = d['zip']
+    ret['zip'] = d['zipcode']
     closed = []
+
     #Monday
     if d['monstatus'] == 'open':
         monList = []
@@ -148,28 +157,40 @@ def dictBuilder(d):
         monList.append(d['mon_closing_hours'])
         monList.append(d['mon_closing_mins'])
         ret['001'] = monList
+
     else:
-        closed.append['001']
+        closed.append('001')
+
+
     #Tuesday
     if d['tuesstatus'] == 'open':
+
             tuesList = []
             tuesList.append(d['tues_opening_hours'])
             tuesList.append(d['tues_opening_mins'])
             tuesList.append(d['tues_closing_hours'])
             tuesList.append(d['tues_closing_mins'])
+            #print tuesList[0] + " " + tuesList[1] + " " + tuesList[2] + " " +tuesList[3]
             ret['002'] = tuesList
+
     else:
-            closed.append['002']
+        closed.append('002')
+
     #Wednesday
     if d['wedstatus'] == 'open':
         wedList = []
         wedList.append(d['wed_opening_hours'])
+        print "Worked1"
         wedList.append(d['wed_opening_mins'])
+        print "Worked2"
         wedList.append(d['wed_closing_hours'])
+        print "Worked3"
         wedList.append(d['wed_closing_mins'])
         ret['003'] = wedList
+        print 'hi'
     else:
-        closed.append['003']
+        closed.append('003')
+
     #Thursday
     if d['thurstatus'] == 'open':
         thurList = []
@@ -178,8 +199,10 @@ def dictBuilder(d):
         thurList.append(d['thur_closing_hours'])
         thurList.append(d['thur_closing_mins'])
         ret['004'] = thurList
+
     else:
-        closed.append['004']
+        closed.append('004')
+
     #Friday
     if d['fristatus'] == 'open':
         friList = []
@@ -188,8 +211,10 @@ def dictBuilder(d):
         friList.append(d['fri_closing_hours'])
         friList.append(d['fri_closing_mins'])
         ret['005'] = friList
+
     else:
-        closed.append['005']
+        closed.append('005')
+
     #Saturday
     if d['satstatus'] == 'open':
         satList = []
@@ -198,8 +223,10 @@ def dictBuilder(d):
         satList.append(d['sat_closing_hours'])
         satList.append(d['sat_closing_mins'])
         ret['006'] = satList
+
     else:
-        closed.append['006']
+        closed.append('006')
+
     #Sunday
     if d['sunstatus'] == 'open':
         sunList = []
@@ -208,8 +235,10 @@ def dictBuilder(d):
         sunList.append(d['sun_closing_hours'])
         sunList.append(d['sun_closing_mins'])
         ret['001'] = sunList
+
     else:
-        closed.append['000']
+        closed.append('000')
+
     ret['closed'] = closed
     return ret
 #way for customers to book
