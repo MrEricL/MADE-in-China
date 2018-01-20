@@ -134,12 +134,13 @@ def newrest():
     print request.args['monstatus']  == 'open'
     '''
     masterDict = dictBuilder(request.args)
+
     for each in masterDict:
 
         print each + ": " + str(masterDict[each])
         print "\n\n"
 
-    return render_template("registerrest.html")
+    return render_template("home.html")
 ### DICT STRING
 ### 000 = SUNDAY
 ### {'000':['12','00','23','00']}
@@ -148,6 +149,7 @@ def dictBuilder(d):
     ret['name'] = d['restname']
     ret['zip'] = d['zipcode']
     ret['reslen'] = d['reslen']
+    ret['pic'] = d['pic']
     closed = []
 
     #Monday
