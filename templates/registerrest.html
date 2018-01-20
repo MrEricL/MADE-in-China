@@ -64,13 +64,21 @@
         $( ".ui-selected" ).css("background-color", "red");
 
         $( ".ui-selected" ).html(tableCount);
-
-        var patronCount = prompt("How many people will sit at this table?", "");  
+  
+        do{
+	    	var patronCount = prompt("How many people will sit at this table?", "");
+		}while(patronCount == null || patronCount == "" || isNaN(patronCount) || patronCount > 100 || patronCount < 1);
   
         var log = $("#select-log" );
         $( ".ui-selected", this ).each(function() {
           var index = $( "#selectable li" ).index( this );
-          log.append( "Added table " + tableCount  + " of " + len + " consisting of Seat " + (index + 1)  + " With " + patronCount  + " People" + "<br>");
+          log.append( "Table " + tableCount +": " + patronCount  + " people" + "<br>");
+          /* Adds the Hidden Form Element for Table Count*/
+	        var tablePeep  = document.createElement("input")
+	        tablePeep.setAttribute("type", "hidden");
+	        tablePeep.setAttribute("name", tableCount+"tablePeep");
+	        tablePeep.setAttribute("value", patronCount)
+	        log.append(tablePeep)
           return false; 
         });
       }
@@ -106,7 +114,8 @@
     </nav>
 
     <div class="content">
-      <form method="GET" action="/newrest">
+    	<!-- FORM CHANGE TO POST ***********************************************************************-->
+      <form method="POST" action="/newrest">
 		Name: <input required type="text" name="restname"> <br><br>
 		Zip Code: <input required type="text" onkeypress="return event.charCode>= 48 && event.charCode <= 57" name="zipcode" maxlength="5"> <br><br>
 		Reservation Length: <select required name="reslen" id="reslen">
@@ -833,10 +842,10 @@
 
 </div>
 
- <button id="add">Add a Table</button>
- <button id="remove">Remove a Table</button>
+ <button type = "button" id="add">Add a Square</button>
+ <button type = "button" id="remove">Remove a Square</button>
 
- <button id="anew">Start Anew</button>
+ <button type = "button" id="anew">Start Anew</button>
 
  <p id="log">
    <span>Your moves so far:</span><br><span id="select-log"></span>

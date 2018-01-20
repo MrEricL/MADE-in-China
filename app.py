@@ -133,7 +133,7 @@ def newrest():
     print "\n\n"
     print request.args['monstatus']  == 'open'
     '''
-    masterDict = dictBuilder(request.args)
+    masterDict = dictBuilder(request.form)
 
     for each in masterDict:
 
@@ -142,14 +142,44 @@ def newrest():
 
     return render_template("home.html")
 ### DICT STRING
-### 000 = SUNDAY
+### 000 = SUNDAY etc.
 ### {'000':['12','00','23','00']}
+### tablePeeps is the number of people per table
+    ### tablePeeps = [2,3] means two people for table 1, three people for table 2
+    ### take the len to find out number of tables
+### closed is list of rest that are closed
+### reslen is the number of minutes a reservation is
+### pic is the base64 string of an image
 def dictBuilder(d):
+
+
     ret = {}
     ret['name'] = d['restname']
     ret['zip'] = d['zipcode']
     ret['reslen'] = d['reslen']
     ret['pic'] = d['pic']
+
+
+    tablePeople = [] #numbers
+    tablePeopleIndex = [] #order of those numbers recieved
+    for each in d: #throws all of it down
+        if each[-1] == "p":
+            tablePeople.append(int(d[each]))
+            tablePeopleIndex.append(int(each[0]))
+
+    
+    #creates blank list
+    retTablePeople = ['none'] * len(tablePeople)
+    #replaces elements by corresponding
+    index = 0
+    for each in tablePeopleIndex:
+        #print indx + "\t" + tablePeople[indx] + "\n"
+        #print "\n"
+        retTablePeople[each-1] = tablePeople[index]
+        index+=1
+
+    ret['tablePeep'] = retTablePeople
+    
     closed = []
 
     #Monday
@@ -182,13 +212,11 @@ def dictBuilder(d):
     #Wednesday
     if d['wedstatus'] == 'open':
         wedList = []
-        print d['wed_closing_mins']
         wedList.append(d['wed_opening_hours'])
         wedList.append(d['wed_opening_mins'])
         wedList.append(d['wed_closing_hours'])
         wedList.append(d['wed_closing_mins'])
         ret['003'] = wedList
-        print "hi999hbj"
 
     else:
         closed.append('003')
