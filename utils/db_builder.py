@@ -20,7 +20,7 @@ def tableCreation():
     c.execute(user_table)
 
     #Create the restaurants table
-    restaurants_table = 'CREATE TABLE restaurants (restID INTEGER PRIMARY KEY, restname TEXT, userID INTEGER, res_slot INTEGER, res_length INTERGER, opening_time TEXT, closing_time TEXT, grid_x INTERGER, grid_y INTERGER);'
+    restaurants_table = 'CREATE TABLE restaurants (restID INTEGER PRIMARY KEY, restname TEXT, zip INTEGER, userID INTEGER, res_length INTERGER, pic TEXT, sun_open_time TEXT, sun_close_time TEXT, mon_open_time TEXT, mon_close_time TEXT, tue_open_time TEXT, tue_close_time TEXT, wed_open_time TEXT, wed_close_time TEXT, thu_open_time TEXT, thu_close_time TEXT, fri_open_time TEXT, fri_close_time TEXT, sat_open_time TEXT, sat_close_time TEXT);'
     c.execute(restaurants_table)
 
     #Create the reservations table
@@ -28,8 +28,8 @@ def tableCreation():
     c.execute(reservations_table)
 
     #Create the restaurant layout table
-    rest_layout_table = 'CREATE TABLE rest_layout (restID INTEGER, tableID INTEGER, seats INTEGER, squares TEXT);'
-    c.execute(rest_layout_table)
+    table_seats_table = 'CREATE TABLE table_seats (restID INTEGER, tableID INTEGER, seats INTEGER);'
+    c.execute(table_seats_table)
 
     db.commit()
     db.close()
@@ -81,11 +81,35 @@ def checkUsername(userN):
 
 #restaurant info stuff
 
+#check if restaurant already exists, returns true if does not exist
+def check_rest(rest_name):
+    rest_list = get_rests()
+    if rest_name in rest_list:
+        return False
+    return True
+
 #add a restaurant
-def add_rest(rest_name, owner_id, res_slot, res_length, open_time, close_time, grid_x, grid_y):
+#mon - sun open and close times are "closed" if restaurand is closed, and "xx:xx" otherwise
+def add_rest(owner_id, info_dict):
     f="data/restaurant_reservations.db"
     db = sqlite3.connect(f)
     c = db.cursor()
+
+    days_dict = {}
+    days_list = ['000', '001', '002', '003', '004', '005', '006'] #sun - mon in order
+    
+    rest_name = info_dict['name']
+    zip_code = info_dict['zip']
+    res_length = info_dict['reslen']
+    pic = info_dict['pic']
+    closed_days = info_dict['closed']
+    
+    for day in closed_days:
+        days_list.remove(day)
+        days_dict[day] = ('closed', 'closed')
+
+    for day in days_list:
+        days_dict[day]  = (info_dict[day][0] + ':' + info_dict[day][1], info_dict[day][2] + ':' + info_dict[day][3])
     
     def get_next_id():
         command = "SELECT restID FROM restaurants"
@@ -93,16 +117,19 @@ def add_rest(rest_name, owner_id, res_slot, res_length, open_time, close_time, g
 
         pre_id = -1
         for ids in info:
-            print (ids)
+            #print (ids)
             pre_id = max(ids or [-1])
-            print (pre_id)
+            #print (pre_id)
         next_id = pre_id + 1
 
         return next_id
 
 
     rest_id = get_next_id()
-    c.execute('INSERT INTO restaurants VALUES (?,?,?,?,?,?,?,?,?)',[rest_id, rest_name, owner_id, res_slot, res_length, open_time, close_time, grid_x, grid_y])
+    
+    c.execute('INSERT INTO restaurants VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)',[rest_id, rest_name, zip_code, owner_id, res_length, pic, days_dict['000'][0], days_dict['000'][1], days_dict['001'][0], days_dict['001'][1], days_dict['002'][0], days_dict['002'][1], days_dict['003'][0], days_dict['003'][1], days_dict['004'][0], days_dict['004'][1], days_dict['005'][0], days_dict['005'][1], days_dict['006'][0], days_dict['006'][1]])
+
+    add_tables(rest_id, info_dict, c)
         
     db.commit()
     db.close()
@@ -110,54 +137,27 @@ def add_rest(rest_name, owner_id, res_slot, res_length, open_time, close_time, g
 
 #layout stuff
 
-#make sure tables dont overlap, returns true if they dont overlap
-def check_table_pos(rest_id, position_list):
-    used_positions = get_layout(rest_id)[1]
-    for pos in position_list:
-        if pos in used_positions:
-            return False
-    return True
     
 #add table
-def add_table(rest_id, seats, position_list):
+def add_tables(rest_id, info_dict, c):
+
+    table_info = info_dict['tablePeeps'] #table id is index, num seats is value
+
+    table_id = 0
+    while table_id < len(table_info):
+        seats = table_info[table_id]
+        print (table_id, seats)
+        c.execute('INSERT INTO table_seats VALUES (?,?,?)', [rest_id, table_id, seats])
+        table_id = table_id + 1
+
+
+#clear all tables for a restaurant
+def clear_tables(rest_id):
     f="data/restaurant_reservations.db"
     db = sqlite3.connect(f)
     c = db.cursor()
 
-    #in order to input into table, make the list of positions a string, seperating every square by semi-colons, and xy coordinates by commas.
-    position_string = ''
-    for coor in position_list:
-        x = coor[0]
-        y = coor[1]
-        position_string = position_string + str(x) + ',' + str(y) + ';'
-    position_string = position_string[:-1]
-    print(position_string)
-
-    def get_next_id():
-        command = "SELECT tableID FROM rest_layout"
-        info = c.execute(command)
-
-        pre_id = -1
-        for entry in info:
-            ids = entry[0]
-            pre_id = max(ids or [-1])
-        next_id = pre_id + 1
-
-        return next_id
-
-    table_id = get_next_id()
-    c.execute('INSERT INTO rest_layout VALUES (?,?,?,?)', [rest_id, table_id, seats, position_string])
-
-    db.commit()
-    db.close()
-
-#clear all tables for a restaurant
-def clear_tables(rest_id):
-    f="../data/restaurant_reservations.db"
-    db = sqlite3.connect(f)
-    c = db.cursor()
-
-    c.execute('DELETE FROM rest_layout WHERE restID=' + str(rest_id))
+    c.execute('DELETE FROM table_seats WHERE restID=' + str(rest_id))
 
     db.commit()
     db.close()
@@ -219,8 +219,25 @@ def get_user_id(username):
 
 #for restaurant table
 
-#gets a list of restaurants owned by the user
-def get_restaurants(owner_id):
+#gets a list of all restaurants(for customer to see)
+def get_rests():
+    f="data/restaurant_reservations.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+
+    command = 'SELECT restname FROM restaurants'
+    info = c.execute(command)
+
+    rests = []
+    for entry in info:
+        #print (entry)
+        rests.append(entry[0])
+
+    db.close()
+    return rests
+
+#gets a list of restaurants owned by the user(for owner to see)
+def get_rests_of_owner(owner_id):
     f="data/restaurant_reservations.db"
     db = sqlite3.connect(f)
     c = db.cursor()
@@ -235,29 +252,28 @@ def get_restaurants(owner_id):
     db.close()
     return rests
 
-#gets size of layout grid
-def get_grid_size(rest_id):
+def get_zip(rest_id):
     f="data/restaurant_reservations.db"
     db = sqlite3.connect(f)
     c = db.cursor()
 
-    command = "SELECT grid_x, grid_y FROM restaurants WHERE restID=" + rest_id
+    command = 'SELECT zip FROM restaurants WHERE restID=' + str(rest_id)
     info = c.execute(command)
 
-    grid_size = (None, None)
     for entry in info:
-        grid_size[0] = entry[0]
-        grid_size[1] = entry[1]
+        zip_code = entry[0]
 
     db.close()
-    return grid_size
+    return zip_code
 
-def get_open_times(rest_id):
+#helper function to get open times
+#day is the first three letters of the day of the week
+def get_open_times_by_day(day):
     f="data/restaurant_reservations.db"
     db = sqlite3.connect(f)
     c = db.cursor()
 
-    command = "SELECT opening_time, closing_time FROM restaurants WHERE restID=" + rest_id
+    command = "SELECT " + day + "_open_time, " + day + "_close_time FROM restaurants WHERE restID=" + str(rest_id)
     info = c.execute(command)
 
     for entry in info:
@@ -266,6 +282,18 @@ def get_open_times(rest_id):
 
     db.close()
     return open_time, close_time
+
+#gets opening and closing times for each day
+def get_open_times(rest_id):
+    d = {}
+    d['sun'] = get_open_times_by_day('sun')
+    d['mon'] = get_open_times_by_day('mon')
+    d['tue'] = get_open_times_by_day('tue')
+    d['wed'] = get_open_times_by_day('wed')
+    d['thu'] = get_open_times_by_day('thu')
+    d['fri'] = get_open_times_by_day('fri')
+    d['sat'] = get_open_times_by_day('sat')
+    return d
 
 def get_rest_id(rest_name):
     f="data/restaurant_reservations.db"
@@ -284,34 +312,30 @@ def get_rest_id(rest_name):
 #for layout table
 
 #get layout
-#returns a dictionary with the table ids as keys and the corresponding number of seats at each table as entries, and a list of the coordinates of the squares which are tables (the coordinates are tuples)
 def get_layout(rest_id):
     f="data/restaurant_reservations.db"
     db = sqlite3.connect(f)
     c = db.cursor()
 
-    command = "SELECT tableID, seats, squares FROM rest_layout WHERE restID=" + str(rest_id)
+    command = "SELECT tableID, seats FROM table_seats WHERE restID=" + str(rest_id)
     info = c.execute(command)
 
     table_seats = {}
-    squares = []
+
     for entry in info:
         table_id = entry[0]
-        num_seats = entry[1]
+        seats = entry[1]
+        table_seats[table_id] = seats
 
-        table_seats[table_id] = num_seats
-        
-        pos_str = entry[2]
-        #print (pos_str)
-        pos_list = pos_str.split(';')
-        for coor_str in pos_list:
-            x = int(coor_str.split(',')[0])
-            y = int(coor_str.split(',')[1])
-            squares.append((x,y))
-        
+    command = "SELECT pic FROM restaurants WHERE restID=" + str(rest_id)
+    info = c.execute(command)
+
+    pic_str = ''
+    for entry in info:
+        pic_str = entry[0]
 
     db.close()
-    return table_seats, squares
+    return table_seats, pic_str
 
 
 if __name__ == '__main__':     
@@ -324,16 +348,29 @@ if __name__ == '__main__':
     '''print (getUserType("a")) #0
     print (getUserType('b')) #1
 
-    print (get_user_id('a'))
-    print (get_user_id('b'))
+    print (get_user_id('a'))#0
+    print (get_user_id('b'))#1
+
+    user_id = get_user_id('a')
+
+    info_dict = {'name': 'test',
+                 'zip': 10012,
+                 'reslen': 120,
+                 'pic': 'pic_str',
+                 'closed': ['000', '001', '005', '006'],
+                 '002': ['12', '00', '23', '00'],
+                 '003': ['12', '00', '23', '00'],
+                 '004': ['12', '00', '23', '00'],
+                 'tablePeeps': [2, 3]}
     
-    #add_rest('test', get_user_id('a'), 15, 120, '8:00', '20:00', 20, 20)
+    #add_rest(user_id, info_dict)
 
-    print (get_rest_id('test'))
+    rest_id = get_rest_id('test')
+    print (rest_id)#0
+    print (check_rest('test'))#False
+    print (check_rest('rest'))#True
 
-    #clear_tables(get_rest_id('test'))
-    if check_table_pos(get_rest_id('test'), [(0,0), (0,1), (0,2)]):
-        print('adding new table')
-        add_table(get_rest_id('test'), 4, [(0,0), (0,1), (0,2)])
-
-    print (get_layout(get_rest_id('test')))'''
+    print (get_rests())#[test]
+    print (get_rests_of_owner(user_id))#[test]
+    print (get_open_times(rest_id))
+    print (get_layout(rest_id))'''
