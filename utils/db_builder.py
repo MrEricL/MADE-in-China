@@ -164,7 +164,17 @@ def clear_tables(rest_id):
 
     
 #reservation stuff
-    
+
+#add reservation
+def add_reservation(rest_id, month, day, customer_id, table_id, time):
+    f="data/restaurant_reservations.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+
+    c.execute('INSERT INTO reservations VALUES (?,?,?,?,?,?)', [rest_id, customer_id, table_id, month, day, time])
+
+    db.commit()
+    db.close()
 
 #==========================================================
 #ACCESSORS
@@ -337,6 +347,80 @@ def get_layout(rest_id):
     db.close()
     return table_seats, pic_str
 
+#for reservations table
+
+#get available reservation times for a month and day
+def get_available_times_for_day(rest_id, month, day, day_of_week):
+    f="data/restaurant_reservations.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+
+    available_times = []
+    
+    #get times that it is open
+    opening_time, closing_time = get_open_times_by_day(day_of_week)
+    
+    if opening_time == 'closed':
+        return available_times
+
+    
+    #add all times from opening to closing to available times
+    current_time = opening_time
+    while not (current_time == closing_time):
+        available_times.append(current_time)
+        #add the time every five minutes
+        minutes = current_time.split(':')[1]
+        hour = current_time.split(':')[0]
+        if int(minutes) + 5 == 60:
+            hour = str(int(hour) + 1)
+            #put 0 in front if necessary
+            if len(hour) == 1:
+                hour = '0' + hour
+
+            minutes = '00'
+
+        else:
+            minutes = str(int(minutes) + 5)
+            #put 0 in front if necessary
+            if len(minutes) == 1:
+                minutes = '0' + minutes
+
+        current_time = hour + ':' + minutes
+
+    #get length of reservation
+    command = 'SELECT res_length FROM restaurants WHERE restID=' + str(rest_id)
+    info = c.execute(command)
+    for entry in info:
+        res_length = entry[0]
+
+    #number of slots above and below reservation time to remove:
+    num_bad_slots = int (res_length / 5) - 1
+
+    #get reservation start times
+    command = 'SELECT time FROM reservations WHERE restID=' + str(rest_id) + ' AND month=' + str(month) + ' AND day=' + str(day)
+    info = c.execute(command)
+
+    used_times = set()
+    for entry in info:
+        used_times.add(entry[0])
+        start_index = available_times.index(entry[0])
+        i = 0
+        while i <= num_bad_slots and start_index - i >= 0 and start_index + i < len(available_times):
+            used_times.add(available_times[start_index - i])
+            used_times.add(available_times[start_index + i])
+            i = i + 1
+    #make the time before closing unavailable
+    i = 1
+    while i <= num_bad_slots:
+        used_times.add(available_times[0 - i])
+        i = i + 1
+
+    #remove bad times from available time
+    for used_time in used_times:
+        available_times.remove(used_time)
+    
+    db.close()
+    return available_times
 
 if __name__ == '__main__':     
     #TESTING
@@ -353,24 +437,28 @@ if __name__ == '__main__':
 
     user_id = get_user_id('a')
 
-    info_dict = {'name': 'test',
-                 'zip': 10012,
-                 'reslen': 120,
+    info_dict = {'name': 'test2',
+                 'zip': 10013,
+                 'reslen': 15,
                  'pic': 'pic_str',
                  'closed': ['000', '001', '005', '006'],
-                 '002': ['12', '00', '23', '00'],
-                 '003': ['12', '00', '23', '00'],
-                 '004': ['12', '00', '23', '00'],
+                 '002': ['12', '00', '13', '00'],
+                 '003': ['12', '00', '13', '00'],
+                 '004': ['12', '00', '13', '00'],
                  'tablePeeps': [2, 3]}
     
     #add_rest(user_id, info_dict)
 
-    rest_id = get_rest_id('test')
+    rest_id = get_rest_id('test2')
     print (rest_id)#0
     print (check_rest('test'))#False
     print (check_rest('rest'))#True
 
+    print (get_zip(rest_id))
     print (get_rests())#[test]
     print (get_rests_of_owner(user_id))#[test]
     print (get_open_times(rest_id))
-    print (get_layout(rest_id))'''
+    print (get_layout(rest_id))
+
+    #add_reservation(rest_id, 1, 23, get_user_id('b'), 0, '12:10')
+    print (get_available_times_for_day(rest_id, 1, 23, 'tue'))'''
