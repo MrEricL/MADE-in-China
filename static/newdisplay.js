@@ -53,20 +53,32 @@ var addMN = function(e){
     finalElement.style.width = "1200px";
     finalElement.style.backgroundColor = "green";
     list.appendChild(finalElement);
+
+    m.value = null;
+    n.value = null;
+    mButton.disabled = true;
+    m.disabled = true;
+    n.disabled = true;
 }
 
 var mDisable = function(e){
 
     if(((m.value > 7) || (n.value > 7)) || ((m.value < 1) || (n.value < 1))){
+	mButton.style.borderColor = "red";
+	m.style.borderColor = "red";
+	n.style.borderColor = "red";
         mButton.disabled = true;
         if(alertable == true){
-            window.alert("7x7 is the largest possible size");
+            window.alert("The size of your restaurant must exist, and the maximum number of rows and columns is 7");
         }
         alertable = false;
     }
     else{
+	mButton.style.borderColor = "green";
+	m.style.borderColor = "green";
+	n.style.borderColor = "green";
         mButton.disabled = false;
-        alertable = true;
+        //alertable = true;
     }
 }
 

@@ -1,5 +1,7 @@
 var alertable = true;
 
+
+
 var all = document.getElementById("everything");
 var submitButton = document.getElementById('submit');
 var anewButton = document.getElementById('anew');
