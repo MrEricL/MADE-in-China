@@ -51,41 +51,36 @@
         $( ".ui-selected" ).selectable("option", "disabled", true);
 
 
-        if(tableCount > 0){
-
-          var len = 0;
-          var result = $( "#select-result" ).empty();
-          $( ".ui-selected", this ).each(function() {
-            var index = $( "#selectable li" ).index( this );
-            result.append( " #" + ( index + 1 ) );
-            len += 1;
-          });
-
-          var patronCount = prompt("How many people will sit at this table?", ""\
-);
-          if(patronCount != null){
-
-
-          $( ".ui-selected" ).css("background-color", "red");
-          $( ".ui-selected" ).html(tableCount);
-
-
-
-
-            var log = $("#select-log" );
-            $( ".ui-selected", this ).each(function() {
-              var index = $( "#selectable li" ).index( this );
-              log.append( "Added table " + tableCount  + " of " + len + " consis\
-ting of Seat " + (index + 1)  + " With " + patronCount  + " People" + "<br>");
-              return false;
-            });
-          }
-          else{
-            tableCount -= 1;
-          }
-        }
         tableCount += 1;
-
+  
+         var len = 0;
+         var result = $( "#select-result" ).empty();
+         $( ".ui-selected", this ).each(function() {
+           var index = $( "#selectable li" ).index( this );
+           result.append( " #" + ( index + 1 ) );
+           len += 1;
+         });
+  
+         $( ".ui-selected" ).css("background-color", "red");
+  
+         $( ".ui-selected" ).html(tableCount);
+   
+         do{
+ 	    	var patronCount = prompt("How many people will sit at this table?", "");
+ 		}while(patronCount == null || patronCount == "" || isNaN(patronCount) || patronCount > 100 || patronCount < 1);
+   
+         var log = $("#select-log" );
+         $( ".ui-selected", this ).each(function() {
+           var index = $( "#selectable li" ).index( this );
+           log.append( "Table " + tableCount +": " + patronCount  + " people" + "<br>");
+           /* Adds the Hidden Form Element for Table Count*/
+ 	        var tablePeep  = document.createElement("input")
+ 	        tablePeep.setAttribute("type", "hidden");
+ 	        tablePeep.setAttribute("name", tableCount+"tablePeep");
+ 	        tablePeep.setAttribute("value", patronCount)
+ 	        log.append(tablePeep)
+           return false; 
+         });
 
       }
     });
@@ -851,15 +846,8 @@ ting of Seat " + (index + 1)  + " With " + patronCount  + " People" + "<br>");
 
  <button type = "button" id="anew">Start Anew</button>
 
- <br>
-Maximum number of rows and columns: 7
- <br>
-
-Select number of columns:
- <input id="m" type="text" name="m">
-Select number of rows:
- <input id="n" type="text" name="n">
- <button id="mButton">Submit rows and columns</button>
+<button type = "button" id="add">Add a Square</button>
+ - <button type = "button" id="remove">Remove a Square</button>
 
  <p id="log">
    <span>Your moves so far:</span><br><span id="select-log"></span>
