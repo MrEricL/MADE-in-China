@@ -51,7 +51,9 @@
         $( ".ui-selected" ).selectable("option", "disabled", true);
 
 
-        tableCount += 1;
+        if(tableCount > 0){
+
+
   
          var len = 0;
          var result = $( "#select-result" ).empty();
@@ -65,22 +67,28 @@
   
          $( ".ui-selected" ).html(tableCount);
    
+         
          do{
- 	    	var patronCount = prompt("How many people will sit at this table?", "");
- 		}while(patronCount == null || patronCount == "" || isNaN(patronCount) || patronCount > 100 || patronCount < 1);
-   
-         var log = $("#select-log" );
-         $( ".ui-selected", this ).each(function() {
-           var index = $( "#selectable li" ).index( this );
-           log.append( "Table " + tableCount +": " + patronCount  + " people" + "<br>");
-           /* Adds the Hidden Form Element for Table Count*/
- 	        var tablePeep  = document.createElement("input")
- 	        tablePeep.setAttribute("type", "hidden");
- 	        tablePeep.setAttribute("name", tableCount+"tablePeep");
- 	        tablePeep.setAttribute("value", patronCount)
- 	        log.append(tablePeep)
-           return false; 
-         });
+             var patronCount = prompt("How many people will sit at this table?", "");
+ 	 }while (patronCount == null || patronCount < 1 || patronCount > 100); 	
+  
+         //if(patronCount != null){
+
+           var log = $("#select-log" );
+           $( ".ui-selected", this ).each(function() {
+             var index = $( "#selectable li" ).index( this );
+             log.append( "Table " + tableCount +": " + patronCount  + " people" + "<br>");
+             /* Adds the Hidden Form Element for Table Count*/
+ 	          var tablePeep  = document.createElement("input")
+ 	          tablePeep.setAttribute("type", "hidden");
+ 	          tablePeep.setAttribute("name", tableCount+"tablePeep");
+ 	          tablePeep.setAttribute("value", patronCount)
+ 	          log.append(tablePeep)
+             return false; 
+           });
+	  }//ends if table count > 0
+         tableCount += 1;
+         //}//end of if patronCount... 
 
       }
     });
@@ -101,7 +109,7 @@
   </head>
   
   <!-- BODY *********************************************************************************************-->
-  <body>
+  <body id="everything">
     <nav class="navbar navbar-default">
       <div class="container-fluid">
 	<div class="navbar-header">
@@ -807,38 +815,6 @@
 <div id="target">
 
 <ol id="selectable">
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
   
 </ol>
 
@@ -846,8 +822,16 @@
 
  <button type = "button" id="anew">Start Anew</button>
 
-<button type = "button" id="add">Add a Square</button>
- - <button type = "button" id="remove">Remove a Square</button>
+ <br>
+Maximum number of rows and columns: 7
+ <br>
+
+Select number of columns:
+ <input id="m" type="text" name="m">
+Select number of rows:
+ <input id="n" type="text" name="n">
+ <button id="mButton">Submit rows and columns</button>
+ <!--<button id="nButton">How many rows?</button>-->
 
  <p id="log">
    <span>Your moves so far:</span><br><span id="select-log"></span>
