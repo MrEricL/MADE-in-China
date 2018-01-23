@@ -57,7 +57,7 @@ var addMN = function(e){
 
 var mDisable = function(e){
 
-    if((m.value > 7) || (n.value > 7)){
+    if(((m.value > 7) || (n.value > 7)) || ((m.value < 1) || (n.value < 1))){
         mButton.disabled = true;
         if(alertable == true){
             window.alert("7x7 is the largest possible size");

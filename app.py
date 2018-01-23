@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, session, url_for, flash, redirect
 from utils.accounts import authenticate
-from utils.db_builder import checkUsername, addUser, getUserType, get_user_id, get_restaurants
+from utils.db_builder import checkUsername, addUser, getUserType, get_user_id, get_rests
 import os
 from urlparse import urlparse
 
