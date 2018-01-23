@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>jQuery UI Selectable - Serialize</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <!--<link rel="stylesheet" href="/code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
   <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 
@@ -14,7 +15,7 @@
   #selectable .ui-selectee {background: #0000ff; color: #7FFF00; }
   #selectable .ui-selecting { background: #000000; color: #white; }
   #selectable .ui-selected { background: #ff0000; color: white; }
-  #selectable { list-style-type: none; margin: 10; padding: 10; width: 900px; }
+  #selectable { list-style-type: none; margin: 10; padding: 10; width: 1200px; }
   #selectable li { margin: 3px; padding: 1px; float: left; width: 100px; height: 80px; font-size: 4em; text-align: center; }
   </style>
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
@@ -24,8 +25,7 @@
   <!-- EDIT -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
 
- <!--       -->
-
+ <!---->
 
   <script>
   var tableCount = 0;
@@ -35,38 +35,49 @@
     $( "#selectable" ).selectable({
  
       stop: function() {
-
         $( ".ui-selected" ).selectable({
           disabled: true
         });
         $( ".ui-selected" ).selectable("option", "disabled", true);
 
+  
+        if(tableCount > 0){
+
+          var len = 0;
+          var result = $( "#select-result" ).empty();
+          $( ".ui-selected", this ).each(function() {
+            var index = $( "#selectable li" ).index( this );
+            result.append( " #" + ( index + 1 ) );
+            len += 1;
+          });
+
+          var patronCount = prompt("How many people will sit at this table?", "");  
+          if(patronCount != null){  
+
+
+          $( ".ui-selected" ).css("background-color", "red");
+          $( ".ui-selected" ).html(tableCount);
+
+
+            var log = $("#select-log" );
+            $( ".ui-selected", this ).each(function() {
+              var index = $( "#selectable li" ).index( this );
+              log.append( "Added table " + tableCount  + " of " + len + " consisting of Seat " + (index + 1)  + " With " + patronCount  + " People" + "<br>");
+              return false; 
+            });
+          }
+          else{
+            tableCount -= 1;
+          }
+        }
         tableCount += 1;
-  
-        var len = 0;
-        var result = $( "#select-result" ).empty();
-        $( ".ui-selected", this ).each(function() {
-          var index = $( "#selectable li" ).index( this );
-          result.append( " #" + ( index + 1 ) );
-          len += 1;
-        });
+        
 
-        $( ".ui-selected" ).css("background-color", "red");
-
-        $( ".ui-selected" ).html(tableCount);
-
-        var patronCount = prompt("How many people will sit at this table?", "");  
-  
-        var log = $("#select-log" );
-        $( ".ui-selected", this ).each(function() {
-          var index = $( "#selectable li" ).index( this );
-          log.append( "Added table " + tableCount  + " of " + len + " consisting of Seat " + (index + 1)  + " With " + patronCount  + " People" + "<br>");
-          return false; 
-        });
       }
     });
   } );
   </script>
+
   <script>
     $(document).ready( function() {
       $(":enabled").css("border", "3px solid green");
@@ -78,7 +89,7 @@
   </script>
 
 </head>
-<body>
+<body id="everything">
  
 <p id="feedback">
   <span>You've selected:</span> <span id="select-result">none</span>.
@@ -88,49 +99,29 @@
 <div id="target">
 
 <ol id="selectable">
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
-  <li class="ui-widget-content"></li>
+  <!--<li class="ui-widget-content"></li>-->
   
 </ol>
 
 </div>
 
- <button id="add">Add a Table</button>
- <button id="remove">Remove a Table</button>
+<!-- <button id="add">Add a Table</button>
+ <button id="remove">Remove a Table</button>-->
 
  <button id="submit">Submit Tables</button>
 
  <button id="anew">Start Anew</button>
+
+ <br>
+Maximum number of rows and columns: 7
+ <br>
+
+Select number of columns:
+ <input id="m" type="text" name="m">
+Select number of rows:
+ <input id="n" type="text" name="n">
+ <button id="mButton">Submit rows and columns</button>
+ <!--<button id="nButton">How many rows?</button>-->
 
  <p id="log">
    <span>Your moves so far:</span><br><span id="select-log"></span>
@@ -142,14 +133,16 @@
 
  <button id="finalize"> Finalize </button>
 
+<!--<form action="https://stuyenglish.wordpress.com">
+  <input id="numTables" type="text" name="numTables">
+  <input id="form" type="submit" value="submit">-->
+</form>
+
+<script>
+
+</script>
 
 
-
-
-
-
-
-  
  <script src="newdisplay.js"></script>
 
 </body>
