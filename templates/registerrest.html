@@ -17,24 +17,26 @@
 
 
     <style>
-        body{
-	background-image: url("");
-	background-size: cover;
-	background-attachment: fixed;
-	background-repeat: no-repeat;
-        }
-	.content{
-      margin: 25px 50px 75px 50px;
-	}
-	.navbar{
-	margin: 25px 50px 50px 25px;
-	}
-	.navbar-brand{
-	margin-top: -6px;
-	}
-	/* SELECTABLE *****************************************************************************************/
-	  #target{ overflow: auto; }
-	    #feedback { font-size: 1.4em; }
+      body{
+      background-image: url("http://food.fnr.sndimg.com/content/dam/images/food/fullset/2014/3/11/0/TU0703_Banana-Cream-Pudding_s4x3.jpg.rend.hgtvcom.616.462.suffix/1394587617072.jpeg");
+      background-size: cover;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      }
+      .content{
+      margin: 25px 50px 75px 75px;
+      }
+      img{
+      display: block;
+      margin: 0 auto;
+      margin-top: 20px; 
+      }
+      #selectable{
+      margin-left: -50px;
+      }
+      /* SELECTABLE *****************************************************************************************/
+      #target{ overflow: auto; }
+      #feedback { font-size: 1.4em; }
 	  
 	  #selectable .ui-selectee {background: #0000ff; color: #7FFF00; }
 	  #selectable .ui-selecting { background: #000000; color: #white; }
@@ -109,19 +111,9 @@
   
   <!-- BODY *********************************************************************************************-->
   <body>
-    <nav class="navbar navbar-default">
-      <div class="container-fluid">
-	<div class="navbar-header">
-	  <a class="navbar-brand" href="/home">
-	    <img src="http://madeinchinafilm.com/wp-content/uploads/2015/02/MAIN-TITLE.png" width="100" height="35"></a>
-	</div>
-	<ul class="nav navbar-nav">
-	  <li class="active"><a href="#">Home</a></li>
-	  <li><a href="/restaurants">Restaurants</a></li>
-	  <li><a href="/logout">Logout</a></li>
-	</ul>
-      </div>
-    </nav>
+    <a href="/"><img src="http://madeinchinafilm.com/wp-content/uploads/2015/02/MAIN-TITLE.png" width="400" height="175"></a>
+
+    <a href="/logout"><img src="http://free-icon-rainbow.com/i/icon_03849/icon_038490_256.png" style="display:block;,margin:0 auto;width:25px;height:30px;"></a>
 
     <div class="content">
     	<!-- FORM CHANGE TO POST ***********************************************************************-->
@@ -888,7 +880,8 @@
  <!-- SUBMIT -**************************************************************************************-->
 <input required type="submit" name="submit">
       </form>
-      
+
+      <br><i>Note: Please click finalize before you submit!<i>
     </div>
     	<script src="../static/newdisplay.js"></script>
        <script type="text/javascript" src="../static/registerrest.js"></script>
