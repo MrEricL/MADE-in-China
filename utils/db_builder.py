@@ -165,6 +165,9 @@ def clear_tables(rest_id):
     
 #reservation stuff
 
+#check that customer doesn't already have that time reserved
+def check_reservation(customer_id, month, day, time):
+
 #add reservation
 def add_reservation(rest_id, month, day, customer_id, table_id, time):
     f="data/restaurant_reservations.db"
@@ -422,6 +425,49 @@ def get_available_times_for_day(rest_id, month, day, day_of_week):
     db.close()
     return available_times
 
+#get all of the reservations for a restaurant (for owner to view)
+def get_reservations_for_rest(rest_id):
+    f="data/restaurant_reservations.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+
+    command = 'SELECT userID, tableID, month, day, time FROM reservations WHERE restID=' + str(rest_id)
+    info = c.execute(command)
+
+    res_list = []
+    
+    for entry in info:
+        customer_id = entry[0]
+        table_id = entry[1]
+        month = entry[2]
+        day = entry[3]
+        time = entry[4]
+        res_list.append((customer_id, table_id, month, day, time))
+    db.close()
+    return res_list
+
+#get all of the reservations of a customer (for customer to view)
+def get_customer_reservations(customer_id):
+    f="data/restaurant_reservations.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+
+    command = 'SELECT restID, tableID, month, day, time FROM reservations WHERE userID=' + str(customer_id)
+    info = c.execute(command)
+
+    res_list = []
+    
+    for entry in info:
+        rest_id = entry[0]
+        table_id = entry[1]
+        month = entry[2]
+        day = entry[3]
+        time = entry[4]
+        res_list.append((rest_id, table_id, month, day, time))
+        
+    db.close()
+    return res_list
+    
 if __name__ == '__main__':     
     #TESTING
     #tableCreation()
