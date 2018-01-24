@@ -106,14 +106,18 @@ def home():
 
     owner_rests = []
     reservations = []
+
+    userTypeList = []
     if user_type == 0: #owner
-        owned_rests = get_rests_of_owner(user_id) #list of restaurant names
+        userTypeList = get_rests_of_owner(user_id) #list of restaurant names
     else:
-        reservations = get_customer_reservations(user_id) #list of reservations in format (rest_id, table_id, month, day, time)
+        userTypeList = get_customer_reservations(user_id) #list of reservations in format (rest_id, table_id, month, day, time)
+
+    print userTypeList
 
     if 'user' in session:
         print "This is the user type: " + str(user_type)
-        return render_template("home.html",userstatus=user_type,username=user,listOR=restList)
+        return render_template("home.html",userstatus=user_type,username=user,listOR=restList,userL=userTypeList)
         
     else:    
         return redirect(url_for("root"))
