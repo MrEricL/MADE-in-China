@@ -141,7 +141,7 @@ def add_rest(owner_id, info_dict):
 #add table
 def add_tables(rest_id, info_dict, c):
 
-    table_info = info_dict['tablePeeps'] #table id is index, num seats is value
+    table_info = info_dict['tablePeep'] #table id is index, num seats is value
 
     table_id = 0
     while table_id < len(table_info):

@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, session, url_for, flash, redirect
 from utils.accounts import authenticate
-from utils.db_builder import checkUsername, addUser, getUserType, get_user_id, get_rests, get_rest_id, get_layout
+from utils.db_builder import checkUsername, addUser, getUserType, get_user_id, get_rests, get_rest_id, get_layout,add_rest
 import os
 from urlparse import urlparse
 
@@ -142,7 +142,9 @@ def newrest():
     print "\n\n"
     print request.args['monstatus']  == 'open'
     '''
+    user_id = get_user_id(session['user'])
     masterDict = dictBuilder(request.form)
+    add_rest(user_id,masterDict)
 
     for each in masterDict:
 
