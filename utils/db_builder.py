@@ -272,7 +272,7 @@ def get_rests_of_owner(owner_id):
         rest_name = get_rest_name(rest_id)
         zip_code = get_zip(rest_id)
         res_len = get_res_len(rest_id)
-        rests.append((rest_name, zip_code, res_len))
+        rests.append([rest_name, zip_code, res_len])
 
     db.close()
     return rests
@@ -503,7 +503,7 @@ def get_customer_reservations(customer_id):
         time = entry[4]
         zip_code = get_zip(rest_id)
         res_length = get_res_len(rest_id)
-        res_list.append((get_rest_name(rest_id), table_id, month, day, time, zip_code, res_length))
+        res_list.append([get_rest_name(rest_id), table_id, month, day, time, zip_code, res_length])
         
     db.close()
     return res_list
