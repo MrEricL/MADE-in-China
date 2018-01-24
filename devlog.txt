@@ -21,8 +21,7 @@ Restaurant Reservation Manager
 --------------------------------------------------------------
 MZ-
 AN-
-DL- Initially only saw the assignment for the project; began brainstorming idea\
-s and potential APIs.
+DL- <13:35> Initially only saw the assignment for the project; began brainstorming ideas and potential APIs.
 EL-
 ==============================================================
 
@@ -30,8 +29,7 @@ EL-
 --------------------------------------------------------------
 MZ-
 AN- Worked on design doc
-DL- Finally came up with/agreed to the restaurant idea; helped in submitting th\
-e design doc.
+DL- <19:00> Finally came up with/agreed to the restaurant idea; helped in submitting the design doc.
 EL- <10:00pm> Helped with the design docment.
 ==============================================================
 
@@ -39,16 +37,14 @@ EL- <10:00pm> Helped with the design docment.
 --------------------------------------------------------------
 MZ-
 AN- Began work on login/register pages
-DL- Looked into potential selecting power to use for back-end programming: cale\
-ndars, selectable, etc.
+DL- <17:00> Looked into potential selecting power to use for back-end programming: calendars, selectable, etc.
 EL- <6:40pm> Did research on jquerey and related libraries for project.
 ==============================================================
 
 2017-1-2
 --------------------------------------------------------------
 MZ- Wrote code to create tables, and wrote code for storing and getting user information (for login and registering system)
-DL- Began self-tutorial on jQuery to learn how to operate the selectable widget\
-.
+DL- <13:40> Began self-tutorial on jQuery to learn how to operate the selectable widget.
 EL- <4:00pm> Began writing app.py's framework and implementing login.
 ==============================================================
 
@@ -56,8 +52,7 @@ EL- <4:00pm> Began writing app.py's framework and implementing login.
 --------------------------------------------------------------
 MZ- Added function to get the type of user (customer or owner), created database
 AN- Login/register pages, home page navbar, external css alongside bootstrap
-DL- Continued self-tutorial; included learning things like the different types \
-of events, as well as certain arguments and class names in selectable
+DL- <13:20> Continued self-tutorial; included learning things like the different types of events, as well as certain arguments and class names in selectable
 EL- <4:00pm> Kept working on app.py and the login system.
 ==============================================================
 
@@ -65,8 +60,7 @@ EL- <4:00pm> Kept working on app.py and the login system.
 --------------------------------------------------------------
 MZ- Started working on functions to add and get restaurant information
 AN- Worked on restaurants page css, building table of restaurants for display
-DL- Figured out how to make the selected elements maintain color and shape, fre\
-eze into forms
+DL- <22:30> Figured out how to make the selected elements maintain color and shape, freeze into forms
 EL- <5:00pm> Paired app.py and the login system with the database. Worked with Masha to figure out how we were going to coordinate functions.
 ==============================================================
 
@@ -74,8 +68,7 @@ EL- <5:00pm> Paired app.py and the login system with the database. Worked with M
 --------------------------------------------------------------
 MZ- Continued work on functions to add and get restaurant information
 AN- Restaurants registration page css
-DL- Added additional tracking functionality, such as tracking the number of eac\
-h table as it is selected
+DL- <13:45> Added additional tracking functionality, such as tracking the number of each table as it is selected
 EL- <4:30pm> Started working on the master form for data submission.
 ==============================================================
 
@@ -83,8 +76,7 @@ EL- <4:30pm> Started working on the master form for data submission.
 --------------------------------------------------------------
 MZ- Continued work on functions to add and get restaurant information
 AN- Fixed weird spacing on pages
-DL- Made a preliminary "submit" button, which causes each the functionality to \
-be destroyed and the screen to freeze
+DL- <13:45> Made a preliminary "submit" button, which causes each the functionality to be destroyed and the screen to freeze
 EL- <4:00pm> Finetuned the javascript for the master form.
 ==============================================================
 
@@ -92,7 +84,7 @@ EL- <4:00pm> Finetuned the javascript for the master form.
 --------------------------------------------------------------
 MZ- Started working on storing and getting restaurant layout
 AN- Cleaned up restaurant registration page, tried rearranging elements
-DL- Began working on a button that adds or removes a table from the array.
+DL- <20:00> Began working on a button that adds or removes a table from the array.
 EL- <9:00pm> Worked on the links for app.py, expanded it.
 ==============================================================
 
@@ -100,8 +92,7 @@ EL- <9:00pm> Worked on the links for app.py, expanded it.
 --------------------------------------------------------------
 MZ- Finished working on storing and getting restaurant layout
 AN- Formatting for reservations page 
-DL- Finished creating the add/remove buttons, and began thinking of ways to par\
-lay this information into the databases.
+DL- <13:50> Finished creating the add/remove buttons, and began thinking of ways to parlay this information into the databases.
 EL- <9:00pm> Worked on figuring out how to send base64 and how to save as hidden form.
 ==============================================================
 
@@ -109,8 +100,7 @@ EL- <9:00pm> Worked on figuring out how to send base64 and how to save as hidden
 --------------------------------------------------------------
 MZ- Began testing and debugging all of my code
 AN- Fixed userstatus bug 
-DL- Deferred the screenshot idea to Eric, and began working on a hidden form to\
- send information.
+DL- <13:55> Deferred the screenshot idea to Eric, and began working on a hidden form to send information.
 EL-<8:10pm> Worked on using HTML2Canvas to take screenshots for the form.
 ==============================================================
 
@@ -118,9 +108,7 @@ EL-<8:10pm> Worked on using HTML2Canvas to take screenshots for the form.
 --------------------------------------------------------------
 MZ- Finished testing and debugging
 AN- Rearranging and organizing elements on reservations page 
-DL- Continued work on the hidden form, adding functionality that sends a variab\
-le number without a need for input. Also began working on functionality for the\
- user to make the board of custom MxN size.
+DL- <18:45> Continued work on the hidden form, adding functionality that sends a variable number without a need for input. Also began working on functionality for the user to make the board of custom MxN size.
 EL- <4:30pm> Bug testing and worked on making sure that the site wouldn't crash.
 ==============================================================
 
@@ -128,8 +116,7 @@ EL- <4:30pm> Bug testing and worked on making sure that the site wouldn't crash.
 --------------------------------------------------------------
 MZ- Changed the organization of tables and changed the way restaurant layout is stored
 AN- CSS for time selection page
-DL- Finished up the hidden form and figured out a way, using large margins and \
-shrinking CSS, to create custom rows and columns.
+DL- <21:25> Finished up the hidden form and figured out a way, using large margins and shrinking CSS, to create custom rows and columns.
 EL- <2:00pm> Bug testing and forcing the form things into one giant form.
 ==============================================================
 
@@ -137,8 +124,7 @@ EL- <2:00pm> Bug testing and forcing the form things into one giant form.
 --------------------------------------------------------------
 MZ- Wrote function that adds a reservation and one that gets the available times for a reservation
 AN- Replaced navbar
-DL- Implemented the MxN array idea, adding it to the greater registerrest.html \
-file.
+DL- <23:45> Implemented the MxN array idea, adding it to the greater registerrest.html file.
 EL- <7:20pm> Fixed some stuff regarding linking the database and app.py.
 ==============================================================
 
@@ -146,9 +132,7 @@ EL- <7:20pm> Fixed some stuff regarding linking the database and app.py.
 --------------------------------------------------------------
 MZ- Wrote functions that get reservations made by a customer and get reservations at a restaurant, wrote function that checks if customer already made a reservation at the selected time
 AN- Put final touches on css, fixed bug with back button 
-DL- Transferred other elements, such as newdisplay.js, added CSS and decoration thro\
-ughout, and fixed minor bugs. Also worked on README. Later, had to remove MxN functi\
-onality because it did not coalesce with the rest of the project.
+DL- <23:50> Transferred other elements, such as newdisplay.js, added CSS and decoration throughout, and fixed minor bugs. Also worked on README. Later, had to remove MxN functionality because it did not coalesce with the rest of the project.
 EL- <4:30pm> Fixed all the calender stuff so that the UI would function properly\
 Worked on fixing all the bugs in app.py. Redid the functions for reservations.
 ==============================================================
