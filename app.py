@@ -284,10 +284,14 @@ def dictBuilder(d):
 def book():
     nameofRest = request.args['name']
     restID = get_rest_id(nameofRest)
-    print get_layout (nameofRest)
+    #print get_layout (nameofRest)
     # Get picture ofid
-
-    return render_template("reserve.html")
+    # Get list of tables
+    if 'user' in session:
+        return render_template("reserve.html", nameofRest=nameofRest)
+        
+    else:    
+        return redirect(url_for("root"))
     
 if __name__ == '__main__':
     app.run(debug=True)

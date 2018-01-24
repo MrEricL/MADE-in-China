@@ -3,6 +3,8 @@
     padding: .2em .2em 0;
     display: none;
     background:#846733;  
+    left: 50% !important; 
+
 }
 .ui-datepicker .ui-datepicker-title {
     margin: 0 2.3em;
@@ -34,3 +36,4 @@
     text-align: right;
     text-decoration: none;
 }
+
