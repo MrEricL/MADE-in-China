@@ -1,7 +1,7 @@
 # MADE-in-China-- Angel Ng, Dimitriy Leksanov, Eric Li, Masha Zorin--Pd. 8
 ## Restaurant Reservation Assailant
 
-## [Private Link to the Video](http://polazzo.com)
+## [Private Link to the Video](https://www.youtube.com/watch?v=Aacu1PAaPBc&feature=youtu.be)
 
 ## So... What is this, exactly?
 The Restaurant Reservation Assistant allows restaurant patrons to connect to one another from both sides of the curtain. By registering, users can choose to be either Owners or Customers.
