@@ -335,9 +335,13 @@ def closedList(l):
     closed=[]
 
     for each in l:
+        openingx = l[each][0].find(':')
+        closingx = l[each][1].find(':')
         if l[each][0]=='closed':
             closed.append(each)
-        if l[each][0] == l[each][1]:
+        elif l[each][0] == l[each][1]:
+            closed.append(each)
+        elif int(l[each][0][:openingx]) < int(l[each][1][:closingx]):
             closed.append(each)
 
     first = True
