@@ -1,23 +1,61 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title> Booking Part 2</title>
-</head>
-<body>
-  Please choose your reservation time from these available times:
-  <br><br>
-  <form action="/add_res">
-    {% for time in times %}
-    <input type="submit" name="reservation_time" value={{time}}>
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+     <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <style>
+      body{
+      background-image: url("http://food.fnr.sndimg.com/content/dam/images/food/fullset/2014/3/11/0/TU0703_Banana-Cream-Pudding_s4x3.jpg.rend.hgtvcom.616.462.suffix/1394587617072.jpeg");
+      background-size: cover;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      margin: 25px 75px 75px 50px;
+      line-height: 15px; 
+      }
+      img{
+      display: block; 
+      margin: 0 auto;
+      }
+      form{
+      display: block;
+      margin-left: 20px;
+      }
+      input{
+      margin-top: 5px;
+      }
+    </style>
+    
+    <title> Booking Part 2</title>
+  </head>
+  
+  <body>
+    <a href="/"><img src="http://madeinchinafilm.com/wp-content/uploads/2015/02/MAIN-TITLE.png" width="400" height="175"></a>
     <br>
-    {% endfor %}
-    <input type="hidden" name="restID" value={{restID}}>
-    <input type="hidden" name="tableID" value={{tableID}}>
-    <input type="hidden" name="month" value={{month}}>
-    <input type="hidden" name="day" value={{day}}>
-  </form>
-  <form action="/book">
-    <input type="submit" value="Back">
-  </form>
-</body>
+    
+    <h3>Please choose your reservation time from these available times:<h3>
+    <br>
+    <form action="/add_res">
+      {% for time in times %}    
+      <input type="submit" name="reservation_time" value={{time}}>
+      {% endfor %}
+      
+      <input type="hidden" name="restID" value={{restID}}>
+      <input type="hidden" name="tableID" value={{tableID}}>
+      <input type="hidden" name="month" value={{month}}>
+      <input type="hidden" name="day" value={{day}}>
+    </form>
+    <br>
+    <form action="/book">
+      <input type="submit" value="Back">
+    </form>
+  </body>
 </html>
