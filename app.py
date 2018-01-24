@@ -341,7 +341,7 @@ def closedList(l):
             closed.append(each)
         elif l[each][0] == l[each][1]:
             closed.append(each)
-        elif int(l[each][0][:openingx]) < int(l[each][1][:closingx]):
+        elif int(l[each][0][:openingx]) > int(l[each][1][:closingx]):
             closed.append(each)
 
     first = True
