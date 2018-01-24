@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, session, url_for, flash, redirect
 from utils.accounts import authenticate
-from utils.db_builder import checkUsername, addUser, getUserType, get_user_id, get_rests, get_rest_id
+from utils.db_builder import checkUsername, addUser, getUserType, get_user_id, get_rests, get_rest_id, get_layout
 import os
 from urlparse import urlparse
 
@@ -284,6 +284,8 @@ def dictBuilder(d):
 def book():
     nameofRest = request.args['name']
     restID = get_rest_id(nameofRest)
+
+    # Get picture of id
 
     return render_template("reserve.html")
     
