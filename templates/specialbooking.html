@@ -56,8 +56,12 @@
       <input type="hidden" name="day" value={{day}}>
     </form>
     <br>
-    <form action="/book">
-      <input type="submit" value="Back">
-    </form>
+    <button onclick="goBack()">Back</button>
+    
+    <script>
+      function goBack() {
+      window.history.back();
+      }
+    </script>
   </body>
 </html>
