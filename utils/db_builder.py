@@ -165,8 +165,15 @@ def clear_tables(rest_id):
     
 #reservation stuff
 
-#check that customer doesn't already have that time reserved
-#def check_reservation(customer_id, month, day, time):
+#check that customer doesn't already have that time reserved, returns true if custormer doesn't have reservation them
+def check_reservation(customer_id, month, day, time):
+    res_list = get_customer_reservations(customer_id)
+    taken_times_list = []
+    for entry in res_list:
+        taken_times_list.append((entry[2], entry[3], entry[4]))
+    if (month, day, time) in taken_times_list:
+        return False
+    return True
 
 
 #add reservation
