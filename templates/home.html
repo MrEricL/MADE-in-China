@@ -14,32 +14,33 @@
 
     <style>
       body{
-       background-image: url("http://food.fnr.sndimg.com/content/dam/images/food/fullset/2014/3/11/0/TU0703_Banana-Cream-Pudding_s4x3.jpg.rend.hgtvcom.616.462.suffix/1394587617072.jpeg");
+      background-image: url("http://food.fnr.sndimg.com/content/dam/images/food/fullset/2014/3/11/0/TU0703_Banana-Cream-Pudding_s4x3.jpg.rend.hgtvcom.616.462.suffix/1394587617072.jpeg");
       background-size: cover;
       background-attachment: fixed;
       background-repeat: no-repeat;
       }
       .content{
-      color: white;
+      background-color: white;
+      border-radius: 4px; 
       margin: 25px 50px 75px 50px;
+      padding: 25px 25px 25px 25px;
       }
       .navbar{
-      margin: 25px 50px 50px 25px;
+      margin: 25px 25px 50px 25px;
       }
       .navbar-brand{
-      margin-top: -6px;
+      margin-top: -8px;
       }
     </style>
 
     <title>Home</title>
 </head>
 <body>
-
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
 	<a class="navbar-brand" href="/home">
-	<img src="http://madeinchinafilm.com/wp-content/uploads/2015/02/MAIN-TITLE.png" width="100" height="35"></a>
+	<img src="http://madeinchinafilm.com/wp-content/uploads/2015/02/MAIN-TITLE.png" width="100" height="40"></a>
       </div>
       <ul class="nav navbar-nav">
 	<li class="active"><a href="#">Home</a></li>
@@ -59,7 +60,7 @@
     {% for each in listOR %}
       {{each|safe}}
     {% endfor %}
-
+    
     {% endif %}
     <br><br>
     {%if userstatus == 0%}
