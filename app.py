@@ -150,8 +150,7 @@ def newrest():
 
         print each + ": " + str(masterDict[each])
         print "\n\n"
-
-    return render_template("home.html")
+    return redirect ("home")
 ### DICT STRING
 ### 000 = SUNDAY etc.
 ### {'000':['12','00','23','00']}
@@ -290,17 +289,17 @@ def book():
     daysOpen = get_open_times(restID)
 
     retClosedList = closedList(daysOpen)
-    print retClosedList
 
     #Print number per table
     base64 = get_layout (restID)[1]
 
-
+    tableSeats = get_layout(restID)[0]
+    print tableSeats
 
     # Get picture ofid
     # Get list of tables
     if 'user' in session:
-        return render_template("reserve.html", nameofRest=nameofRest, base64=base64, closed=retClosedList)
+        return render_template("reserve.html", nameofRest=nameofRest, base64=base64, closed=retClosedList, tableSeats=tableSeats, ID = restID)
         
     else:    
         return redirect(url_for("root"))
@@ -337,6 +336,15 @@ def closedList(l):
     retStr = retStr[:-3]
     return retStr
 
+@app.route('/specialbooking', methods = ['POST','GET'])
+def specialbooking():
+    restID = request.args['ID']
+    seat = request.args['seat']
+    month = request.args['month']
+    day = request.args['day']
+    DOW = request.args['DOW'][0]
+
+    return render_template("home.html") 
 
     
 if __name__ == '__main__':

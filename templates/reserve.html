@@ -21,6 +21,12 @@ $(document).ready(function(){
 
   var $datePicker = $("div");
 
+  var tempMonth = ""
+
+  var tempDay = ""
+
+  var tempDOW = ""
+
 
   $datePicker.datepicker({
     beforeShowDay: function(date) {
@@ -43,11 +49,33 @@ $(document).ready(function(){
         month = date.getMonth() + 1;
 
       console.log(month + "/" + day);
-      window.location.replace("/hi");
+        tempMonth = month
+        tempDay = day
+        tempDOW = date.getUTCDay();
+        $("#datepicker").change();
     }
   })
 
+  .change(function(e) {
+    setTimeout(function() {
+
+      $datePicker
+        .find('.ui-datepicker-current-day').parent().after(
+           {% for each in tableSeats%}
+              "<a href='specialbook?id={{ID}}&seat={{each}}month="+tempMonth+"&day="+tempDay+"&DOW="+tempDOW+"3'>{{each}}</a><br>" +
+
+            {% endfor %}
+            ""
+        )
+
+    });
+  });
+
 });
+
+/*
+
+*/
 
   </script>
 
