@@ -17,7 +17,19 @@
     
     <style>
       body {
-        background-image: url("http://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/4/5/2/FNM_050112-Ted-Farmers-Market-001_s4x3.jpg.rend.hgtvcom.616.462.suffix/1371606862953.jpeg");
+      background-image: url("https://cdn.pixabay.com/photo/2017/02/15/10/39/background-2068217_1280.jpg");
+      background-size: cover;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      }
+      h1, p {
+      color: white;
+      text-align: center;
+      }
+      img{
+      padding-top: 15px; 
+      display: block;
+      margin: 0 auto;
       }
     </style>
 
@@ -31,10 +43,11 @@
     <br><center> {{message}} </center>
     {% endfor %}
 
+    <img src="http://madeinchinafilm.com/wp-content/uploads/2015/02/MAIN-TITLE.png" width="400" height="175">
+    
     <div class="container">
       <div class="row">
 	<div class="col-sm-6 col-md-4 col-md-offset-4">
-	  <h1><c>Welcome to MADE-In-China</c></h1>
           <h1 class="text-center login-title">Sign In</h1>
           <div class="account-wall">
             <form method="POST" action="/login" class="form-signin">
@@ -44,14 +57,13 @@
                 Sign in</button>
               <label class="checkbox pull-left">
                 <input type="checkbox" value="remember-me" name="remember">
-                Remember me
-              </label>
-              <a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
+                <p>Remember me</p>
+              </label><br><br>
             </form>
           </div>
-          <a href="/registration" class="text-center new-account">Create an account</a>
 	</div>
       </div>
     </div>
+    <p>Don't have an account? <a href="/registration">Click here!</a></p>
   </body>
 </html>
