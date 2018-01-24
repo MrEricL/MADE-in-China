@@ -287,7 +287,7 @@ def dictBuilder(d):
 def book():
     nameofRest = request.args['name']
     restID = get_rest_id(nameofRest)
-    base64 = get_layout (nameofRest)
+    base64 = get_layout (restID)[1]
     # Get picture ofid
     # Get list of tables
     if 'user' in session:
