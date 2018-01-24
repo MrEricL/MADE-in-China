@@ -263,12 +263,16 @@ def get_rests_of_owner(owner_id):
     db = sqlite3.connect(f)
     c = db.cursor()
 
-    command = 'SELECT restname FROM restaurants WHERE userID=' + str(owner_id) + ';'
+    command = 'SELECT restID FROM restaurants WHERE userID=' + str(owner_id) + ';'
     info = c.execute(command)
 
     rests = []
     for entry in info:
-        rests.append(entry[0])
+        rest_id = entry[0]
+        rest_name = get_rest_name(rest_id)
+        zip_code = get_zip(rest_id)
+        res_len = get_res_len(rest_id)
+        rests.append((rest_name, zip_code, res_len))
 
     db.close()
     return rests
@@ -286,6 +290,20 @@ def get_zip(rest_id):
 
     db.close()
     return zip_code
+
+def get_res_len(rest_id):
+    f="data/restaurant_reservations.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+
+    command = 'SELECT res_length FROM restaurants WHERE restID=' + str(rest_id)
+    info = c.execute(command)
+
+    for entry in info:
+        res_len = entry[0]
+
+    db.close()
+    return res_len
 
 #helper function to get open times
 #day is the first three letters of the day of the week
@@ -483,7 +501,9 @@ def get_customer_reservations(customer_id):
         month = entry[2]
         day = entry[3]
         time = entry[4]
-        res_list.append((get_rest_name(rest_id), table_id, month, day, time))
+        zip_code = get_zip(rest_id)
+        res_length = get_res_len(rest_id)
+        res_list.append((get_rest_name(rest_id), table_id, month, day, time, zip_code, res_length))
         
     db.close()
     return res_list
