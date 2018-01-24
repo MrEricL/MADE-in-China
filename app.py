@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, session, url_for, flash, redirect
 from utils.accounts import authenticate
-from utils.db_builder import checkUsername, addUser, getUserType, get_user_id, get_rests, get_rest_id, get_layout,add_rest,get_open_times, get_available_times_for_day, check_reservation, add_reservation
+from utils.db_builder import checkUsername, addUser, getUserType, get_user_id, get_rests, get_rest_id, get_layout,add_rest,get_open_times, get_available_times_for_day, check_reservation, add_reservation, get_customer_reservations, get_rests_of_owner
 import os
 from urlparse import urlparse
 
