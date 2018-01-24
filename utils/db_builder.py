@@ -328,7 +328,19 @@ def get_rest_id(rest_name):
         rest_id = entry[0]
     db.close()
     return rest_id
-    
+
+def get_rest_name(rest_id):
+    f="data/restaurant_reservations.db"
+    db = sqlite3.connect(f)
+    c = db.cursor()
+
+    command = 'SELECT restname FROM restaurants WHERE restID=' + str(rest_id)
+    info = c.execute(command)
+
+    for entry in info:
+        rest_name = entry[0]
+    db.close()
+    return rest_name
 
 #for layout table
 
@@ -471,7 +483,7 @@ def get_customer_reservations(customer_id):
         month = entry[2]
         day = entry[3]
         time = entry[4]
-        res_list.append((rest_id, table_id, month, day, time))
+        res_list.append((get_rest_name(rest_id), table_id, month, day, time))
         
     db.close()
     return res_list
