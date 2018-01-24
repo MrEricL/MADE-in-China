@@ -31,6 +31,9 @@
       .navbar-brand{
       margin-top: -8px;
       }
+      table td,th {
+    padding:14px;
+}
     </style>
 
     <title>Home</title>
@@ -55,11 +58,46 @@
     <!--userstatus: {{userstatus}}-->
     {%if userstatus == 0%}
     <p>You are an owner!</p>
+
+    <table>
+      <th> Zip </th>
+      <th> Restaurant Name </th>
+       <th> Reservation Length </th>
+    {% for each in userL %}
+      <tr>
+        <td align="center"> {{each[1]}} </td>
+        <td align="center"> {{each[0]}} </td>
+        <td align="center"> {{each[2]}} </td>
+      </tr>
+    {% endfor %}
+  </table>
+
+
     {%else%}
     <p>You are a customer!</p>
     {% for each in listOR %}
       {{each|safe}}
     {% endfor %}
+<br>
+    <table>
+      <th> Zip </th>
+      <th> Restaurant Name </th>
+      <th> Table Number </th>
+      <th> Date </th>
+      <th> Time </th>
+       <th> Reservation Length </th>
+    {% for each in userL %}
+      <tr>
+        <td align="center"> {{each[5]}} </td>
+        <td align="center"> {{each[0]}} </td>
+        <td align="center"> {{each[1]+1}} </td>
+        <td align="center"> {{each[2]}} / {{each[3]}}  </td>
+        <td align="center"> {{each[4]}} </td>
+        <td align="center"> {{each[6]}} </td>
+      </tr>
+    {% endfor %}
+  </table>
+
     
     {% endif %}
     <br><br>
