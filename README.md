@@ -9,7 +9,7 @@ Both of these names are fairly self-explanatory. The Owners, for instance, are o
 For Customers, this is a similar deal. Customers can interact with a calender and search through a bevy of restaurants. Then, when they find venues and dates that work, they can sign up for a reservation time in a fairly simple process.
 
 ## About the code...
- The code in this web application comes from a variety of languages. Firstly, the app itself (app.py) runs on Python through the Flask web framework. However, the pages themselves are comprised of a combination of HTML and Jinja code, the latter of which is connected to multiple Python scripts. The HTML code is mostly stored in the "templates" directory, to enable the render_template method, while the Python scripts are mainly stored either in the root directory or in the "utils" directory.
+The code in this web application comes from a variety of languages. Firstly, the app itself (app.py) runs on Python through the Flask web framework. However, the pages themselves are comprised of a combination of HTML and Jinja code, the latter of which is connected to multiple Python scripts. The HTML code is mostly stored in the "templates" directory, to enable the render_template method, while the Python scripts are mainly stored either in the root directory or in the "utils" directory.
  
 The HTMl is further decorated and made presentable with a combination of the Bootstrap framework, as found online, and separate CSS files, such as reserve.css, which is found in the "static" directory. The main purpose of that directory, however, is to house the JavaScript code, which is responsible for a majority of the backend scripts that animate the pages. The JavaScript is diverse, and includes information from multiple separate libraries, such as jQuery.
 
@@ -36,5 +36,11 @@ You'll have to wait a while, because there aren't any :stuck_out_tongue_winking_
 
 ## How to run and use our app:
 First, you will be directed to a beautiful login screen. If you don't yet have an account, click on the link towards the middle of the screen. From their, register a NEW username and password, and select either Owner or Customer. Then, you will be redirected to your corresponding homepage. If you are an Owner, click on the link directing you to register a restaurant. From there, fill out the form in this sequence: form, then select tables, then click finalize, and then, finally, click submit. If you are a Customer, you should be able to select restaurants and reservation times from a calendar. Then, in all cases, click on Restaurants to view either available (Customer) or submitted (Owner) restaurants, and click Log Out to do just that.
+
+## Potential bugs
+One thing to watch out for exists in the restaurant registration form. If you are an owner, once you have filled out your form and selected your layout, be sure to click the "finalize" button FIRST, and THEN click the "submit" button. This ensures that a screenshot of the floorplan is sent before the restaurant is registered, and Customers can then view the floorplan.
+Additionally, if you choose to add or subtract squares, there may be a couple issues. Firstly, when adding, the new squares exist, but are not visible until you drag your mouse over them. So, if you wish to include added squares in the table, just drag your lasso over where they should be. Secondly, when subtracting selectable squares, if you wish to remove an original square, you would have to click the button twice.
+
+#### Happy registering!
 
 ### --The MADE-in-China Crew!
