@@ -96,6 +96,7 @@ def register():
 def home():
     user = session['user']
     user_type = getUserType(user)
+    user_id = get_user_id(user)
     
     listofRest = get_rests() #prototype
     restList = []
@@ -103,6 +104,12 @@ def home():
     for each in listofRest:
         restList.append('<a href = "book?name=%s"> %s </a><br>' % (each, each))
 
+    owner_rests = []
+    reservations = []
+    if user_type == 0: #owner
+        owned_rests = get_rests_of_owner(user_id) #list of restaurant names
+    else:
+        reservations = get_customer_reservations(user_id) #list of reservations in format (rest_id, table_id, month, day, time)
 
     if 'user' in session:
         print "This is the user type: " + str(user_type)
@@ -123,11 +130,17 @@ def logout():
 def restaurants():
     user_id = get_user_id(session['user'])
     restaurants = get_restaurants(user_id)
+    if 'user' not in session:
+        flash ("You are not logged in!")
+        return redirect(url_for('root'))
     return render_template("resturants.html", restaurants=restaurants)
 
 #the actual page to make a new rest
 @app.route('/addrest', methods = ['POST','GET'])
 def addrest():
+    if 'user' not in session:
+        flash ("You are not logged in!")
+        return redirect(url_for('root'))
     return render_template("registerrest.html")
 
 # Accepts/parse the form to make new rest
@@ -150,6 +163,11 @@ def newrest():
 
         print each + ": " + str(masterDict[each])
         print "\n\n"
+
+    if 'user' not in session:
+        flash ("You are not logged in!")
+        return redirect(url_for('root'))
+    
     return redirect ("home")
 ### DICT STRING
 ### 000 = SUNDAY etc.
@@ -338,8 +356,10 @@ def closedList(l):
 
 @app.route('/specialbook', methods = ['POST','GET'])
 def specialbook():
-
-    print request.args
+    if 'user' not in session:
+        flash ("You are not logged in!")
+        return redirect(url_for('root'))
+    
     restID = request.args['id']
     seat = request.args['seat']
     month = request.args['month']
@@ -350,11 +370,15 @@ def specialbook():
     day_of_week = day_names[DOW]
 
     available_times = get_available_times_for_day(restID, month, day, day_of_week, seat)
-
+    
     return render_template("specialbooking.html", times=available_times, restID=restID, tableID=seat, month=month, day=day)
 
 @app.route('/add_res', methods = ['POST', 'GET'])
 def add_res():
+    if 'user' not in session:
+        flash ("You are not logged in!")
+        return redirect(url_for('root'))
+    
     time = request.args['reservation_time']
     rest_id = request.args['restID']
     table_id = request.args['tableID']
