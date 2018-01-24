@@ -46,6 +46,10 @@
     <p>You are an owner!</p>
     {%else%}
     <p>You are a customer!</p>
+    {% for each in listOR %}
+      {{each|safe}}
+    {% endfor %}
+
     {% endif %}
     <br><br>
     {%if userstatus == 0%}

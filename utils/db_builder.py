@@ -168,6 +168,7 @@ def clear_tables(rest_id):
 #check that customer doesn't already have that time reserved
 def check_reservation(customer_id, month, day, time):
 
+
 #add reservation
 def add_reservation(rest_id, month, day, customer_id, table_id, time):
     f="data/restaurant_reservations.db"

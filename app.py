@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, session, url_for, flash, redirect
 from utils.accounts import authenticate
-from utils.db_builder import checkUsername, addUser, getUserType, get_user_id, get_rests
+from utils.db_builder import checkUsername, addUser, getUserType, get_user_id, get_rests, get_rest_id
 import os
 from urlparse import urlparse
 
@@ -95,9 +95,17 @@ def register():
 @app.route('/home', methods = ['POST','GET'])
 def home():
     user_type = getUserType (user)
+
+    listofRest = get_rests() #prototype
+    restList = []
+
+    for each in listofRest:
+        restList.append('<a href = "book?name=%s"> %s </a><br>' % (each, each))
+
+
     if 'user' in session:
         print "This is the user type: " + str(user_type)
-        return render_template("home.html",userstatus=user_type)
+        return render_template("home.html",userstatus=user_type,listOR=restList)
         
     else:    
         return redirect(url_for("root"))
@@ -274,6 +282,9 @@ def dictBuilder(d):
 #way for customers to book
 @app.route('/book',methods=['POST','GET'])
 def book():
+    nameofRest = request.args['name']
+    restID = get_rest_id(nameofRest)
+
     return render_template("reserve.html")
     
 if __name__ == '__main__':
