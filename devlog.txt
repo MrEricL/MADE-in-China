@@ -46,7 +46,7 @@ EL-
 
 2017-1-2
 --------------------------------------------------------------
-MZ-
+MZ- Wrote code to create tables, and wrote code for storing and getting user information (for login and registering system)
 AN-
 DL- Began self-tutorial on jQuery to learn how to operate the selectable widget\
 .
@@ -55,7 +55,7 @@ EL-
 
 2017-1-3
 --------------------------------------------------------------
-MZ-
+MZ- Added function to get the type of user (customer or owner), created database
 AN-
 DL- Continued self-tutorial; included learning things like the different types \
 of events, as well as certain arguments and class names in selectable
@@ -64,7 +64,7 @@ EL-
 
 2017-1-7
 --------------------------------------------------------------
-MZ-
+MZ- Started working on functions to add and get restaurant information
 AN-
 DL- Figured out how to make the selected elements maintain color and shape, fre\
 eze into forms
@@ -73,7 +73,7 @@ EL-
 
 2017-1-9
 --------------------------------------------------------------
-MZ-
+MZ- Continued work on functions to add and get restaurant information
 AN-
 DL- Added additional tracking functionality, such as tracking the number of eac\
 h table as it is selected
@@ -82,7 +82,7 @@ EL-
 
 2017-1-10
 --------------------------------------------------------------
-MZ-
+MZ- Continued work on functions to add and get restaurant information
 AN-
 DL- Made a preliminary "submit" button, which causes each the functionality to \
 be destroyed and the screen to freeze
@@ -91,7 +91,7 @@ EL-
 
 2017-1-12
 --------------------------------------------------------------
-MZ-
+MZ- Started working on storing and getting restaurant layout
 AN-
 DL- Began working on a button that adds or removes a table from the array.
 EL-
@@ -99,7 +99,7 @@ EL-
 
 2017-1-14
 --------------------------------------------------------------
-MZ-
+MZ- Finished working on storing and getting restaurant layout
 AN-
 DL- Finished creating the add/remove buttons, and began thinking of ways to par\
 lay this information into the databases.
@@ -108,7 +108,7 @@ EL-
 
 2017-1-16
 --------------------------------------------------------------
-MZ-
+MZ- Began testing and debugging all of my code
 AN-
 DL- Deferred the screenshot idea to Eric, and began working on a hidden form to\
  send information.
@@ -117,7 +117,7 @@ EL-
 
 2017-1-17
 --------------------------------------------------------------
-MZ-
+MZ- Finished testing and debugging
 AN-
 DL- Continued work on the hidden form, adding functionality that sends a variab\
 le number without a need for input. Also began working on functionality for the\
@@ -127,7 +127,7 @@ EL-
 
 2017-1-20
 --------------------------------------------------------------
-MZ-
+MZ- Changed the organization of tables and changed the way restaurant layout is stored
 AN-
 DL- Finished up the hidden form and figured out a way, using large margins and \
 shrinking CSS, to create custom rows and columns.
@@ -136,7 +136,7 @@ EL-
 
 2017-1-22
 --------------------------------------------------------------
-MZ-
+MZ- Wrote function that adds a reservation and one that gets the available times for a reservation
 AN-
 DL- Implemented the MxN array idea, adding it to the greater registerrest.html \
 file.
@@ -145,7 +145,7 @@ EL-
 
 2017-1-23
 --------------------------------------------------------------
-MZ-
+MZ- Wrote functions that get reservations made by a customer and get reservations at a restaurant, wrote function that checks if customer already made a reservation at the selected time
 AN-
 DL- Transferred other elements, such as newdisplay.js, added CSS and decoration thro\
 ughout, and fixed minor bugs. Also worked on README. Later, had to remove MxN functi\
