@@ -4,6 +4,16 @@
 	<title> Booking Part 2</title>
 </head>
 <body>
-
+  Please choose your reservation time from these available times:
+  <br><br>
+  <form action="/home">
+    {% for time in times %}
+    <input type="submit" name="reservation_time" value={{time}}>
+    <br>
+    {% endfor %}
+  </form>
+  <form action="/book">
+    <input type="submit" value="Back">
+  </form>
 </body>
 </html>

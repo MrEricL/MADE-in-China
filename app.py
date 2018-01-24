@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, session, url_for, flash, redirect
 from utils.accounts import authenticate
-from utils.db_builder import checkUsername, addUser, getUserType, get_user_id, get_rests, get_rest_id, get_layout,add_rest,get_open_times
+from utils.db_builder import checkUsername, addUser, getUserType, get_user_id, get_rests, get_rest_id, get_layout,add_rest,get_open_times, get_available_times_for_day
 import os
 from urlparse import urlparse
 
@@ -342,9 +342,14 @@ def specialbooking():
     seat = request.args['seat']
     month = request.args['month']
     day = request.args['day']
-    DOW = request.args['DOW'][0]
+    DOW = int(request.args['DOW'][0])
 
-    return render_template("home.html") 
+    day_names = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat']
+    day_of_week = day_names[DOW]
+
+    available_times = get_available_times_for_day(restID, month, day, day_of_week, seat)
+
+    return render_template("specialbooking.html", times=available_times) 
 
     
 if __name__ == '__main__':
