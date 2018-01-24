@@ -94,6 +94,10 @@ def register():
 #user dashboard 
 @app.route('/home', methods = ['POST','GET'])
 def home():
+    if 'user' not in session:
+        flash ("You are not logged in!")
+        return redirect(url_for('root'))
+    
     user = session['user']
     user_type = getUserType(user)
     user_id = get_user_id(user)
