@@ -1,5 +1,5 @@
 # MADE-in-China-- Angel Ng, Dimitriy Leksanov, Eric Li, Masha Zorin--Pd. 8
-## Restaurant Reservation Assailant
+## Restaurant Reservation Assistant
 
 ## [Private Link to the Video](https://www.youtube.com/watch?v=Aacu1PAaPBc&feature=youtu.be)
 
