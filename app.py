@@ -284,8 +284,8 @@ def dictBuilder(d):
 def book():
     nameofRest = request.args['name']
     restID = get_rest_id(nameofRest)
-
-    # Get picture of id
+    print get_layout (nameofRest)
+    # Get picture ofid
 
     return render_template("reserve.html")
     
