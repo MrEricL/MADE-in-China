@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, session, url_for, flash, redirect
 from utils.accounts import authenticate
-from utils.db_builder import checkUsername, addUser, getUserType, get_user_id, get_rests, get_rest_id, get_layout,add_rest
+from utils.db_builder import checkUsername, addUser, getUserType, get_user_id, get_rests, get_rest_id, get_layout,add_rest,get_open_times
 import os
 from urlparse import urlparse
 
@@ -287,7 +287,15 @@ def dictBuilder(d):
 def book():
     nameofRest = request.args['name']
     restID = get_rest_id(nameofRest)
+    daysOpen = get_open_times(restID)
+    print daysOpen
+
+
+    #Print number per table
     base64 = get_layout (restID)[1]
+
+
+
     # Get picture ofid
     # Get list of tables
     if 'user' in session:
