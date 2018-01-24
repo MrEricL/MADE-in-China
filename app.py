@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, session, url_for, flash, redirect
 from utils.accounts import authenticate
-from utils.db_builder import checkUsername, addUser, getUserType, get_user_id, get_rests, get_rest_id, get_layout,add_rest,get_open_times, get_available_times_for_day
+from utils.db_builder import checkUsername, addUser, getUserType, get_user_id, get_rests, get_rest_id, get_layout,add_rest,get_open_times, get_available_times_for_day, check_reservation, add_reservation
 import os
 from urlparse import urlparse
 
@@ -349,7 +349,23 @@ def specialbooking():
 
     available_times = get_available_times_for_day(restID, month, day, day_of_week, seat)
 
-    return render_template("specialbooking.html", times=available_times) 
+    return render_template("specialbooking.html", times=available_times, restID=restID, tableID=seat, month=month, day=day)
+
+@app.route('/addres', methods = ['POST', 'GET'])
+def add_res():
+    time = request.args['reservation_time']
+    rest_id = request.args['restID']
+    table_id = request.args['tableID']
+    month = request.args['month']
+    day = request.args['day']
+    customer_id = get_user_id(session['user'])
+
+    if check_reservation(customer_id, month, day, time):
+        add_reservation(rest_id, month, day, customer_id, table_id, time)
+        return redirect(url_for("home"))
+    else:
+        flash ("You have already made a reservation at that time!")
+        return redirect(url_for("home"))
 
     
 if __name__ == '__main__':

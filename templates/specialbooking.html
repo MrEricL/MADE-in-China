@@ -6,11 +6,15 @@
 <body>
   Please choose your reservation time from these available times:
   <br><br>
-  <form action="/home">
+  <form action="/add_res">
     {% for time in times %}
     <input type="submit" name="reservation_time" value={{time}}>
     <br>
     {% endfor %}
+    <input type="hidden" name="restID" value={{restID}}>
+    <input type="hidden" name="tableID" value={{tableID}}>
+    <input type="hidden" name="month" value={{month}}>
+    <input type="hidden" name="day" value={{day}}>
   </form>
   <form action="/book">
     <input type="submit" value="Back">
