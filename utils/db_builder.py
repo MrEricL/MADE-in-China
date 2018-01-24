@@ -282,7 +282,7 @@ def get_zip(rest_id):
 
 #helper function to get open times
 #day is the first three letters of the day of the week
-def get_open_times_by_day(day):
+def get_open_times_by_day(day, rest_id):
     f="data/restaurant_reservations.db"
     db = sqlite3.connect(f)
     c = db.cursor()
@@ -300,13 +300,13 @@ def get_open_times_by_day(day):
 #gets opening and closing times for each day
 def get_open_times(rest_id):
     d = {}
-    d['sun'] = get_open_times_by_day('sun')
-    d['mon'] = get_open_times_by_day('mon')
-    d['tue'] = get_open_times_by_day('tue')
-    d['wed'] = get_open_times_by_day('wed')
-    d['thu'] = get_open_times_by_day('thu')
-    d['fri'] = get_open_times_by_day('fri')
-    d['sat'] = get_open_times_by_day('sat')
+    d['sun'] = get_open_times_by_day('sun',rest_id)
+    d['mon'] = get_open_times_by_day('mon',rest_id)
+    d['tue'] = get_open_times_by_day('tue',rest_id)
+    d['wed'] = get_open_times_by_day('wed',rest_id)
+    d['thu'] = get_open_times_by_day('thu',rest_id)
+    d['fri'] = get_open_times_by_day('fri',rest_id)
+    d['sat'] = get_open_times_by_day('sat',rest_id)
     return d
 
 def get_rest_id(rest_name):

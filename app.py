@@ -288,8 +288,9 @@ def book():
     nameofRest = request.args['name']
     restID = get_rest_id(nameofRest)
     daysOpen = get_open_times(restID)
-    print daysOpen
 
+    retClosedList = closedList(daysOpen)
+    print retClosedList
 
     #Print number per table
     base64 = get_layout (restID)[1]
@@ -299,10 +300,44 @@ def book():
     # Get picture ofid
     # Get list of tables
     if 'user' in session:
-        return render_template("reserve.html", nameofRest=nameofRest, base64=base64)
+        return render_template("reserve.html", nameofRest=nameofRest, base64=base64, closed=retClosedList)
         
     else:    
         return redirect(url_for("root"))
+
+def closedList(l):
+    retStr = ""
+    closed=[]
+
+    for each in l:
+        if l[each][0]=='closed':
+            closed.append(each)
+        if l[each][0] == l[each][1]:
+            closed.append(each)
+
+    first = True
+    for each in closed:
+        print each
+        if each == 'mon':
+            retStr+="day != 1"
+        if each == 'tue':
+            retStr+="day != 2"
+        if each == 'wed':
+            retStr+="day != 3"
+        if each == 'thu':
+            retStr+="day != 4"
+        if each == 'fri':
+            retStr+="day != 5"
+        if each == 'sat':
+            retStr+="day != 6"
+        if each == 'sun':
+            retStr+="day != 0"
+        retStr+=" && "
+
+    retStr = retStr[:-3]
+    return retStr
+
+
     
 if __name__ == '__main__':
     app.run(debug=True)

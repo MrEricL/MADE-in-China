@@ -25,7 +25,11 @@ $(document).ready(function(){
   $datePicker.datepicker({
     beforeShowDay: function(date) {
       var day = date.getDay();
-      return [(day != 0 && day != 6)];
+      return [(
+        {{closed|safe}}
+
+
+      )];
     },
     changeMonth: true,
     maxDate: "+2m",
