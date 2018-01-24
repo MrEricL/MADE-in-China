@@ -361,7 +361,7 @@ def get_layout(rest_id):
 #for reservations table
 
 #get available reservation times for a month and day
-def get_available_times_for_day(rest_id, month, day, day_of_week):
+def get_available_times_for_day(rest_id, month, day, day_of_week, table_id):
     f="data/restaurant_reservations.db"
     db = sqlite3.connect(f)
     c = db.cursor()
@@ -408,7 +408,7 @@ def get_available_times_for_day(rest_id, month, day, day_of_week):
     num_bad_slots = int (res_length / 5) - 1
 
     #get reservation start times
-    command = 'SELECT time FROM reservations WHERE restID=' + str(rest_id) + ' AND month=' + str(month) + ' AND day=' + str(day)
+    command = 'SELECT time FROM reservations WHERE restID=' + str(rest_id) + ' AND month=' + str(month) + ' AND day=' + str(day) + ' AND tableID=' + str(table_id)
     info = c.execute(command)
 
     used_times = set()
