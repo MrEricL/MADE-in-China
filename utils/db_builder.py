@@ -369,7 +369,7 @@ def get_available_times_for_day(rest_id, month, day, day_of_week, table_id):
     available_times = []
     
     #get times that it is open
-    opening_time, closing_time = get_open_times_by_day(day_of_week)
+    opening_time, closing_time = get_open_times_by_day(day_of_week,rest_id)
     
     if opening_time == 'closed':
         return available_times

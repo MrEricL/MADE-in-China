@@ -72,7 +72,7 @@
       $datePicker
       .find('.ui-datepicker-current-day').parent().after(
       {% for each in tableSeats%}
-      "<a href='specialbook?id={{ID}}&seat={{each}}month="+tempMonth+"&day="+tempDay+"&DOW="+tempDOW+"3'>{{each}}</a><br>" +
+      "<a href='specialbook?id={{ID}}&seat={{each}}&month="+tempMonth+"&day="+tempDay+"&DOW="+tempDOW+"3'>{{each+1}}</a><br>" +
       
       {% endfor %}
       ""
@@ -114,6 +114,13 @@
 
     <div id="datepicker" style="top: 59px; left: 577.172px; display: block; z-index: 4; width: 51em;">      
     </div>  
+      {% for each in tableSeats%}
+      Table {{each+1}}:{{tableSeats[each]}} Seats<br>
+      
+      {% endfor %}
+
+
+
   </body>
   
 </html>

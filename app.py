@@ -336,9 +336,11 @@ def closedList(l):
     retStr = retStr[:-3]
     return retStr
 
-@app.route('/specialbooking', methods = ['POST','GET'])
-def specialbooking():
-    restID = request.args['ID']
+@app.route('/specialbook', methods = ['POST','GET'])
+def specialbook():
+
+    print request.args
+    restID = request.args['id']
     seat = request.args['seat']
     month = request.args['month']
     day = request.args['day']
@@ -351,7 +353,7 @@ def specialbooking():
 
     return render_template("specialbooking.html", times=available_times, restID=restID, tableID=seat, month=month, day=day)
 
-@app.route('/addres', methods = ['POST', 'GET'])
+@app.route('/add_res', methods = ['POST', 'GET'])
 def add_res():
     time = request.args['reservation_time']
     rest_id = request.args['restID']
