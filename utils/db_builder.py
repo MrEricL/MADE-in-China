@@ -211,7 +211,7 @@ def getUserType(username):
     retVal = None
     for entry in info:
         if str(entry[0]) == username:
-            retVal = str(entry[1])
+            retVal = int(entry[1])
     db.close()
     #print str(retVal) + "\n\n\n"
     return retVal

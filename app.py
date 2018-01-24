@@ -94,8 +94,9 @@ def register():
 #user dashboard 
 @app.route('/home', methods = ['POST','GET'])
 def home():
-    user_type = getUserType (user)
-
+    user = session['user']
+    user_type = getUserType(user)
+    
     listofRest = get_rests() #prototype
     restList = []
 
@@ -105,7 +106,7 @@ def home():
 
     if 'user' in session:
         print "This is the user type: " + str(user_type)
-        return render_template("home.html",userstatus=user_type,listOR=restList)
+        return render_template("home.html",userstatus=user_type,username=user,listOR=restList)
         
     else:    
         return redirect(url_for("root"))
